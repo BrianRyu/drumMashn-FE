@@ -304,7 +304,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '6') {
     console.log("6 key pressed")
-     document.getElementById('audio6').load()
+    document.getElementById('audio6').load()
     document.getElementById('audio6').play()
     sphere6.scale = {x: 1, y: 1, z: 1}
     sphere6.scale.x += 10
