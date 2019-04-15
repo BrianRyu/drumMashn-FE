@@ -1,3 +1,4 @@
+
 const container3d = document.querySelector('#container')
 //SCene
 var scene = new THREE.Scene();
@@ -148,39 +149,75 @@ camera.position.z = 1000;
 ///AUDIO 
 //////////
 
-//drop down box with select genre
 
+//drop down box with select genre
+//value of the return will be the value being passed in for skin = skin.find( id => id.id === *1*);
 
 const padClassTag = document.querySelector('.pad')
 const padUrl = 'http://localhost:3000/api/v1/sounds'
+
+
+// dropdown should change id's of each pad
+const dropDownSelect = document.querySelector('select.dropdown-content')
+
+const addDropDownSelect = (genre) => {
+      return `<option value=${genre.id}> ${genre.name} </option>`
+}
 fetch(padUrl)
-.then( res => res.json() )
-.then( skin => {
-let pad = skin.find( sound => sound.id === 1);
-pad1 = pad['pad_1']
-pad2 = pad['pad_2']
-pad3 = pad['pad_3']
-pad4 = pad['pad_4']
-pad5 = pad['pad_5']
-pad6 = pad['pad_6']
-pad7 = pad['pad_7']
-pad8 = pad['pad_8']
-let padArray = []
-let x = 1
-padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
-padArray.forEach((url) => {
 
-padClassTag.innerHTML += `<div class="box pad-${x}">${x}
+.then((resp) => {
+      return resp.json()
+}).then((resp) => {
+     resp.forEach((sound) => {
+           dropDownSelect.innerHTML += addDropDownSelect(sound);
+     })
+})
 
-<audio id="audio${x}" src="${url}" ></audio>
+// drop down logic complete
 
-</div>`
- x++ }  )
-} )
+
+// pad appear on skin logic 
+const selectTag = document.querySelector('select')
+selectTag.addEventListener('change', (event) => {
+
+      let newId = parseInt(event.target.value)
+      fetch(padUrl)
+      .then( res => res.json() )
+      .then( sounds => {
+            
+      sound = sounds.find(sound => sound.id === newId);
+      pad1 = sound['pad_1']
+      pad2 = sound['pad_2']
+      pad3 = sound['pad_3']
+      pad4 = sound['pad_4']
+      pad5 = sound['pad_5']
+      pad6 = sound['pad_6']
+      pad7 = sound['pad_7']
+      pad8 = sound['pad_8']
+      let padArray = []
+      let x = 1
+      padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
+      padClassTag.innerHTML = ''
+      padArray.forEach((url) => {
+      padClassTag.innerHTML += `<div class="box pad-${x}">${x}
+      <input type="button" value="PLAY"  onclick="play('audio${x}')">
+      <audio id="audio${x}" src="${url}" ></audio>
+
+      </button></div>`
+      x++ 
+      
+      })
+})
+})
+
+
+
+
  function play(value){
        var audio = document.getElementById(`${value}`);
        audio.play();
                  }
+
 //////////////
 /////END AUDIO
 /////////////////
@@ -255,6 +292,10 @@ padClassTag.addEventListener('click', (event) => {
    }
 })
 //Work on adding key listeners
+
+// pads appear on skin logic end ----
+
+
 
 document.addEventListener('keypress', function (e) {
     if (e.key === '1') {
