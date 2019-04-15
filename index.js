@@ -1,10 +1,155 @@
-// const divSkinTag = document.querySelector('.my-skin')
-// const skinUrl = 'http://localhost:3000/api/v1/skin'
-// fetch(skinUrl)
-// .then( res => res.json() )
-// .then( skin => {
-// divSkinTag.innerHTML += `<img src=${skin[0].skin_url}>` 
-// } )
+
+const container3d = document.querySelector('#container')
+//SCene
+var scene = new THREE.Scene();
+
+//camera
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+//renderer
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+container3d.appendChild( renderer.domElement );
+
+
+function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+///Start building geomatry///////
+let geometry = new THREE.SphereGeometry(10,10,10)
+let material = new THREE.MeshNormalMaterial({wireframe: true})
+
+//Create 8 spheres for each pad
+let sphere1 = new THREE.Mesh(geometry, material)
+scene.add(sphere1)
+
+let sphere2 = new THREE.Mesh(geometry, material)
+scene.add(sphere2)
+
+let sphere3 = new THREE.Mesh(geometry, material)
+scene.add(sphere3)
+
+let sphere4 = new THREE.Mesh(geometry, material)
+scene.add(sphere4)
+let sphere5 = new THREE.Mesh(geometry, material)
+scene.add(sphere5)
+let sphere6 = new THREE.Mesh(geometry, material)
+scene.add(sphere6)
+let sphere7 = new THREE.Mesh(geometry, material)
+scene.add(sphere7)
+let sphere8 = new THREE.Mesh(geometry, material)
+scene.add(sphere8)
+
+
+
+camera.position.z = 500;
+
+
+
+
+
+
+let controls = new THREE.OrbitControls(camera, renderer.domElement)
+controls.minDistance = 1
+controls.maxDistance = 1000
+var t1 =0
+var t2 =0
+var t3 =0
+var t4 =0
+var t5 =0
+var t6 =0
+var t7 =0
+var t8 =0
+var animate = function () {
+
+    requestAnimationFrame( animate );
+
+    t1 += 0.0052;  
+    sphere1.rotation.x += 0.01
+    sphere1.rotation.z += 0.02
+    sphere1.position.x = 20*Math.cos(t1) + 0;
+    sphere1.position.z = 20*Math.sin(t1) + 0; // These to strings make it work
+    t2 += -0.0052
+    sphere2.rotation.x += 0.001
+    sphere2.rotation.z += 0.02
+    // sphere2.position.x = 40*Math.cos(t2) + 0;
+    // sphere2.position.z = 40*Math.sin(t2) + 0; // These to strings make it work
+    t3 += 0.0059
+    sphere3.rotation.x += 0.002
+    sphere3.rotation.z += 0.02
+    // sphere3.position.x = 10*Math.cos(t3) + 0;
+    // sphere3.position.z = 12*Math.sin(t3) + 0; // These to strings make it work
+    t4 += 0.0053
+    sphere4.rotation.x += 0.001
+    sphere4.rotation.z += 0.02
+    // sphere4.position.x = 20*Math.cos(t4) + 0;
+    // sphere4.position.z = 20*Math.sin(t4) + 0; // These to strings make it work
+    t5 += -0.0057
+    sphere5.rotation.x += 0.002
+    sphere5.rotation.z += 0.02
+    // sphere5.position.x = 20*Math.cos(t5) + 0;
+    // sphere5.position.z = 20*Math.sin(t5) + 0; // These to strings make it work
+    t6 += -0.0055
+    sphere6.rotation.x += 0.001
+    sphere6.rotation.z += 0.02
+    // sphere6.position.x = 20*Math.cos(t6) + 0;
+    // sphere6.position.z = 20*Math.sin(t6) + 0; // These to strings make it work
+    t7 += -0.0054
+    sphere7.rotation.x += 0.002
+    sphere7.rotation.z += 0.02
+    // sphere7.position.x = 20*Math.cos(t7) + 0;
+    // sphere7.position.z = 20*Math.sin(t7) + 0; // These to strings make it work
+    t8 += -0.058
+    sphere8.rotation.x += 0.001
+    sphere8.rotation.z += 0.02
+    // sphere8.position.x = 20*Math.cos(t8) + 0;
+    // sphere8.position.z = 20*Math.sin(t8) + 0; // These to strings make it work
+    
+camera.position.z = 1000;
+
+  //start shrinking spheres
+    sphere1.scale.x -= 0.001
+    sphere1.scale.y -= 0.001
+    sphere1.scale.z -= 0.001
+        sphere2.scale.x -= 0.001
+    sphere2.scale.y -= 0.001
+    sphere2.scale.z -= 0.001
+        sphere3.scale.x -= 0.001
+    sphere3.scale.y -= 0.001
+    sphere3.scale.z -= 0.001
+        sphere4.scale.x -= 0.001
+    sphere4.scale.y -= 0.001
+    sphere4.scale.z -= 0.001
+        sphere5.scale.x -= 0.001
+    sphere5.scale.y -= 0.001
+    sphere5.scale.z -= 0.001
+        sphere6.scale.x -= 0.001
+    sphere6.scale.y -= 0.001
+    sphere6.scale.z -= 0.001
+        sphere7.scale.x -= 0.001
+    sphere7.scale.y -= 0.001
+    sphere7.scale.z -= 0.001
+        sphere8.scale.x -= 0.001
+    sphere8.scale.y -= 0.0001
+    sphere8.scale.z -= 0.001
+   
+    controls.update()
+
+    renderer.render( scene, camera );
+};
+
+
+
+
+
+
+/////////////////////////
+///AUDIO 
+//////////
+
+
 //drop down box with select genre
 //value of the return will be the value being passed in for skin = skin.find( id => id.id === *1*);
 
@@ -19,6 +164,7 @@ const addDropDownSelect = (genre) => {
       return `<option value=${genre.id}> ${genre.name} </option>`
 }
 fetch(padUrl)
+
 .then((resp) => {
       return resp.json()
 }).then((resp) => {
@@ -66,22 +212,163 @@ selectTag.addEventListener('change', (event) => {
 
 
 
+
  function play(value){
        var audio = document.getElementById(`${value}`);
        audio.play();
                  }
+
+//////////////
+/////END AUDIO
+/////////////////
+animate()
+padClassTag.addEventListener('click', (event) => {
+    // debugger
+   switch (event.target.innerText) {
+    case '1':
+    console.log("pad 1 pressed")
+    play(event.target.lastElementChild.id)
+    sphere1.scale = {x: 1, y: 1, z: 1}
+    sphere1.scale.x += 10
+    sphere1.scale.y += 10
+    sphere1.scale.z += 10
+    break;
+    case '2':
+    console.log("pad 2 pressed")
+    play(event.target.lastElementChild.id)
+    sphere2.scale = {x: 1, y: 1, z: 1}
+    sphere2.scale.x += 13
+    sphere2.scale.y += 13
+    sphere2.scale.z += 13
+    break;
+    case '3':
+    console.log("pad 3 pressed")
+    play(event.target.lastElementChild.id)
+    sphere3.scale = {x: 1, y: 1, z: 1}
+    sphere3.scale.x += 14
+    sphere3.scale.y += 14
+    sphere3.scale.z += 14
+    break;
+    case '4':
+    console.log("pad 4 pressed")
+    play(event.target.lastElementChild.id)
+    sphere4.scale = {x: 1, y: 1, z: 1}
+    sphere4.scale.x += 15
+    sphere4.scale.y += 15
+    sphere4.scale.z += 15
+    break;
+    case '5':
+    console.log("pad 5 pressed")
+    play(event.target.lastElementChild.id)
+    sphere5.scale = {x: 1, y: 1, z: 1}
+    sphere5.scale.x += 16
+    sphere5.scale.y += 16
+    sphere5.scale.z += 16
+    break;
+    case '6':
+    console.log("pad 6 pressed")
+    play(event.target.lastElementChild.id)
+    sphere6.scale = {x: 1, y: 1, z: 1}
+    sphere6.scale.x += 17
+    sphere6.scale.y += 17
+    sphere6.scale.z += 17
+    break;
+    case '7':
+    console.log("pad 7 pressed")
+    play(event.target.lastElementChild.id)
+    sphere7.scale = {x: 1, y: 1, z: 1}
+    sphere7.scale.x += 18
+    sphere7.scale.y += 18
+    sphere7.scale.z += 18
+    break;
+    case '8':
+    console.log("pad 8 pressed")
+    play(event.target.lastElementChild.id)
+    sphere8.scale = {x: 1, y: 1, z: 1}
+    sphere8.scale.x += 19
+    sphere8.scale.y += 19
+    sphere8.scale.z += 19
+    break;
+   }
+})
+//Work on adding key listeners
+
 // pads appear on skin logic end ----
 
 
-/////////////////////////
 
-// const AudioContext = window.AudioContext || window.webkitAudioContext;
-
-// const audioContext = new AudioContext();
-
-// // get the audio element
-// const audioElement = document.querySelector('audio');
-
-// // pass it into the audio context
-// const track = audioContext.createMediaElementSource(audioElement);
+document.addEventListener('keypress', function (e) {
+    if (e.key === '1') {
+    console.log("1 key pressed")
+    document.getElementById('audio1').load()
+    document.getElementById('audio1').play()
+    sphere1.scale = {x: 1, y: 1, z: 1}
+    sphere1.scale.x += 10
+    sphere1.scale.y += 10
+    sphere1.scale.z += 10
+    }
+    if (e.key === '2') {
+    console.log("2 key pressed")
+    document.getElementById('audio2').load()
+    document.getElementById('audio2').play()
+    sphere2.scale = {x: 1, y: 1, z: 1}
+    sphere2.scale.x += 10
+    sphere2.scale.y += 10
+    sphere2.scale.z += 10
+    }
+    if (e.key === '3') {
+    console.log("3 key pressed")
+    document.getElementById('audio3').load()
+    document.getElementById('audio3').play()
+    sphere3.scale = {x: 1, y: 1, z: 1}
+    sphere3.scale.x += 10
+    sphere3.scale.y += 10
+    sphere3.scale.z += 10
+    }
+        if (e.key === '4') {
+    console.log("4 key pressed")
+    document.getElementById('audio4').load()
+    document.getElementById('audio4').play()
+    sphere4.scale = {x: 1, y: 1, z: 1}
+    sphere4.scale.x += 10
+    sphere4.scale.y += 10
+    sphere4.scale.z += 10
+    }
+        if (e.key === '5') {
+    console.log("5 key pressed")
+    document.getElementById('audio5').load()
+    document.getElementById('audio5').play()
+    sphere5.scale = {x: 1, y: 1, z: 1}
+    sphere5.scale.x += 10
+    sphere5.scale.y += 10
+    sphere5.scale.z += 10
+    }
+        if (e.key === '6') {
+    console.log("6 key pressed")
+     document.getElementById('audio6').load()
+    document.getElementById('audio6').play()
+    sphere6.scale = {x: 1, y: 1, z: 1}
+    sphere6.scale.x += 10
+    sphere6.scale.y += 10
+    sphere6.scale.z += 10
+    }
+        if (e.key === '7') {
+    console.log("7 key pressed")
+    document.getElementById('audio7').load()
+    document.getElementById('audio7').play()
+    sphere7.scale = {x: 1, y: 1, z: 1}
+    sphere7.scale.x += 10
+    sphere7.scale.y += 10
+    sphere7.scale.z += 10
+    }
+        if (e.key === '8') {
+    console.log("8 key pressed")
+    document.getElementById('audio8').load()
+    document.getElementById('audio8').play()
+    sphere8.scale = {x: 1, y: 1, z: 1}
+    sphere8.scale.x += 10
+    sphere8.scale.y += 10
+    sphere8.scale.z += 10
+    }
+});
 
