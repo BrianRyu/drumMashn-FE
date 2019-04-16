@@ -16,12 +16,15 @@ function onWindowResize() {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
-
+function randomIntFromInterval(min,max) // min and max included
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
 ///Start building geomatry///////
-let geometry = new THREE.SphereGeometry(10,10,10)
+let geometry = new THREE.SphereGeometry(randomIntFromInterval(4,10),randomIntFromInterval(5,10),randomIntFromInterval(4,40))
 let material = new THREE.MeshNormalMaterial({wireframe: true})
 
-//Create 8 spheres for each pad
+///////Create 8 spheres for each pad
 let sphere1 = new THREE.Mesh(geometry, material)
 scene.add(sphere1)
 
@@ -42,8 +45,39 @@ scene.add(sphere7)
 let sphere8 = new THREE.Mesh(geometry, material)
 scene.add(sphere8)
 
+//Create some particles
+//////////////////////
+var tex = new THREE.TextureLoader().load("https://threejs.org/examples/textures/sprites/disc.png");
+  // load the texture
+var partGeom
+var particleSystem
+var particles = 100000;
+var radius = 500;
+var positions = [];
+var colors = [];
+var sizes = [];
+partGeom = new THREE.BufferGeometry();
+var color = new THREE.Color();
+var shaderMaterial = new THREE.PointsMaterial( { 
+    color: 0x888888,
+    map: tex  } );
 
+for ( var i = 0; i < particles; i ++ ) {
+            positions.push( ( Math.random() * 2 - 1 ) * radius );
+            positions.push( ( Math.random() * 2 - 1 ) * radius );
+            positions.push( ( Math.random() * 2 - 1 ) * radius );
+            color.setHSL( i / particles, 1.0, 0.5 );
+            colors.push( color.r, color.g, color.b );
+            sizes.push( 200 );
+        }
 
+partGeom.addAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+partGeom.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
+partGeom.addAttribute( 'size', new THREE.Float32BufferAttribute( sizes, 4 ).setDynamic( true ) );
+
+particleSystem = new THREE.Points( partGeom, shaderMaterial );
+scene.add( particleSystem );
+//////////////////////
 camera.position.z = 500;
 
 
@@ -69,46 +103,51 @@ function getRandomArbitrary(min, max) {
 //////////////////////////
 var animate = function () {
 
+
+
     requestAnimationFrame( animate );
 
+
+
+    /////////////////
     t1 += 0.0052;  
-    sphere1.rotation.x += 0.01
-    sphere1.rotation.z += 0.02
+    sphere1.rotation.x += 0.0001
+    sphere1.rotation.z += 0.002
     sphere1.position.x = 20*Math.cos(t1) + 0;
     sphere1.position.z = 20*Math.sin(t1) + 0; // These to strings make it work
     t2 += -0.0052
-    sphere2.rotation.x += 0.001
-    sphere2.rotation.z += 0.02
+    sphere2.rotation.x += 0.0001
+    sphere2.rotation.z += 0.002
     // sphere2.position.x = 40*Math.cos(t2) + 0;
     // sphere2.position.z = 40*Math.sin(t2) + 0; // These to strings make it work
     t3 += 0.0059
-    sphere3.rotation.x += 0.002
-    sphere3.rotation.z += 0.02
+    sphere3.rotation.x += 0.0002
+    sphere3.rotation.z += 0.002
     // sphere3.position.x = 10*Math.cos(t3) + 0;
     // sphere3.position.z = 12*Math.sin(t3) + 0; // These to strings make it work
     t4 += 0.0053
-    sphere4.rotation.x += 0.001
-    sphere4.rotation.z += 0.02
+    sphere4.rotation.x += 0.0001
+    sphere4.rotation.z += 0.002
     // sphere4.position.x = 20*Math.cos(t4) + 0;
     // sphere4.position.z = 20*Math.sin(t4) + 0; // These to strings make it work
     t5 += -0.0057
-    sphere5.rotation.x += 0.002
-    sphere5.rotation.z += 0.02
+    sphere5.rotation.x += 0.0002
+    sphere5.rotation.z += 0.002
     // sphere5.position.x = 20*Math.cos(t5) + 0;
     // sphere5.position.z = 20*Math.sin(t5) + 0; // These to strings make it work
     t6 += -0.0055
-    sphere6.rotation.x += 0.001
-    sphere6.rotation.z += 0.02
+    sphere6.rotation.x += 0.0001
+    sphere6.rotation.z += 0.002
     // sphere6.position.x = 20*Math.cos(t6) + 0;
     // sphere6.position.z = 20*Math.sin(t6) + 0; // These to strings make it work
     t7 += -0.0054
-    sphere7.rotation.x += 0.002
-    sphere7.rotation.z += 0.02
+    sphere7.rotation.x += 0.0002
+    sphere7.rotation.z += 0.002
     // sphere7.position.x = 20*Math.cos(t7) + 0;
     // sphere7.position.z = 20*Math.sin(t7) + 0; // These to strings make it work
     t8 += -0.058
-    sphere8.rotation.x += 0.001
-    sphere8.rotation.z += 0.02
+    sphere8.rotation.x += 0.0001
+    sphere8.rotation.z += 0.002
     // sphere8.position.x = 20*Math.cos(t8) + 0;
     // sphere8.position.z = 20*Math.sin(t8) + 0; // These to strings make it work
     
@@ -381,6 +420,6 @@ document.addEventListener('keypress', function (e) {
     sphere8.scale.y += randomScaleValue
     sphere8.scale.z += randomScaleValue
     }
-    
+
 });
 
