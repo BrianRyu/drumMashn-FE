@@ -83,9 +83,6 @@ camera.position.z = 500;
 
 
 
-
-
-
 let controls = new THREE.OrbitControls(camera, renderer.domElement)
 controls.minDistance = 1
 controls.maxDistance = 1000
@@ -155,33 +152,7 @@ var animate = function () {
 camera.position.z = 10;
 
         
-        // var randomPositionValue = getRandomArbitrary(-2, 2);
 
-  //start shrinking spheres
-    // sphere1.scale.x += 0.001
-    // sphere1.scale.y += 0.001
-    // sphere1.scale.z += 0.001
-    //     sphere2.scale.x -= 0.001
-    // sphere2.scale.y -= 0.001
-    // sphere2.scale.z -= 0.001
-    //     sphere3.scale.x -= 0.001
-    // sphere3.scale.y -= 0.001
-    // sphere3.scale.z -= 0.001
-    //     sphere4.scale.x -= 0.001
-    // sphere4.scale.y -= 0.001
-    // sphere4.scale.z -= 0.001
-    //     sphere5.scale.x -= 0.001
-    // sphere5.scale.y -= 0.001
-    // sphere5.scale.z -= 0.001
-    //     sphere6.scale.x -= 0.001
-    // sphere6.scale.y -= 0.001
-    // sphere6.scale.z -= 0.001
-    //     sphere7.scale.x -= 0.001
-    // sphere7.scale.y -= 0.001
-    // sphere7.scale.z -= 0.001
-    //     sphere8.scale.x -= 0.001
-    // sphere8.scale.y -= 0.0001
-    // sphere8.scale.z -= 0.001
    
     controls.update()
 
@@ -200,65 +171,77 @@ camera.position.z = 10;
 
 //drop down box with select genre
 //value of the return will be the value being passed in for skin = skin.find( id => id.id === *1*);
-
-const padClassTag = document.querySelector('.pad')
-const padUrl = 'http://localhost:3000/api/v1/sounds'
-
-
-// dropdown should change id's of each pad
-const dropDownSelect = document.querySelector('select.dropdown-content')
-
-const addDropDownSelect = (genre) => {
-      return `<option value=${genre.id}> ${genre.name} </option>`
-}
-fetch(padUrl)
-
-.then((resp) => {
-      return resp.json()
-}).then((resp) => {
-     resp.forEach((sound) => {
-           dropDownSelect.innerHTML += addDropDownSelect(sound);
-     })
-})
-
-// drop down logic complete
+/////////////////////////////////////////////
+/////OLD DB CODE -- BEGINS
+///////////////////////////
+// const padClassTag = document.querySelector('.pad')
+// const padUrl = 'http://localhost:3000/api/v1/sounds'
 
 
-// pad appear on skin logic 
-const selectTag = document.querySelector('select')
-selectTag.addEventListener('change', (event) => {
+// // dropdown should change id's of each pad
+// const dropDownSelect = document.querySelector('select.dropdown-content')
 
-      let newId = parseInt(event.target.value)
-      fetch(padUrl)
-      .then( res => res.json() )
-      .then( sounds => {
+// const addDropDownSelect = (genre) => {
+//       return `<option value=${genre.id}> ${genre.name} </option>`
+// }
+// fetch(padUrl)
+
+// .then((resp) => {
+//       return resp.json()
+// }).then((resp) => {
+//      resp.forEach((sound) => {
+//            dropDownSelect.innerHTML += addDropDownSelect(sound);
+//      })
+// })
+
+// // drop down logic complete
+
+
+// // pad appear on skin logic 
+// const selectTag = document.querySelector('select')
+// selectTag.addEventListener('change', (event) => {
+
+//       let newId = parseInt(event.target.value)
+//       fetch(padUrl)
+//       .then( res => res.json() )
+//       .then( sounds => {
             
-      sound = sounds.find(sound => sound.id === newId);
-      pad1 = sound['pad_1']
-      pad2 = sound['pad_2']
-      pad3 = sound['pad_3']
-      pad4 = sound['pad_4']
-      pad5 = sound['pad_5']
-      pad6 = sound['pad_6']
-      pad7 = sound['pad_7']
-      pad8 = sound['pad_8']
-      let padArray = []
-      let x = 1
-      padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
-      padClassTag.innerHTML = ''
-      padArray.forEach((url) => {
-      padClassTag.innerHTML += `<div class="box pad-${x}">${x}
+//       sound = sounds.find(sound => sound.id === newId);
+//       pad1 = sound['pad_1']
+//       pad2 = sound['pad_2']
+//       pad3 = sound['pad_3']
+//       pad4 = sound['pad_4']
+//       pad5 = sound['pad_5']
+//       pad6 = sound['pad_6']
+//       pad7 = sound['pad_7']
+//       pad8 = sound['pad_8']
+//       let padArray = []
+//       let x = 1
+//       padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
+//       padClassTag.innerHTML = ''
+//       padArray.forEach((url) => {
+//       padClassTag.innerHTML += `<div class="box pad-${x}">${x}
      
-      <audio id="audio${x}" src="${url}" ></audio>
+//       <audio id="audio${x}" src="${url}" ></audio>
 
-      </div>`
-      x++ 
+//       </div>`
+//       x++ 
       
-      })
-})
-})
+//       })
+// })
+// })
 
-
+/////////////////////////////////
+/////OLD DB CODE ENDS
+////////////////////////////////
+//////NEW DB CODE BEGINS
+///////////////////////////////
+let drumkitURL = "http://localhost:3000/api/v1/drumkits"
+fetch(drumkitURL)
+.then( resp =>  resp.json() )
+.then( kits => {
+    debugger
+})
 
 
  function play(value){
@@ -352,70 +335,70 @@ document.addEventListener('keypress', function (e) {
     document.querySelector('div.box.pad-1').style.opacity = 1
     document.getElementById('audio1').load()
     document.getElementById('audio1').play()
-    sphere1.scale = {x: 1, y: 1, z: 1}
-    sphere1.scale.x += randomScaleValue
-    sphere1.scale.y += randomScaleValue
-    sphere1.scale.z += randomScaleValue
+    
+    sphere1.scale.x += 1
+    sphere1.scale.y += 1
+    sphere1.scale.z += 1
     }
     if (e.key === '2') {
     console.log("2 key pressed")
     document.querySelector('div.box.pad-2').style.opacity = 1
     document.getElementById('audio2').load()
     document.getElementById('audio2').play()
-    sphere2.scale = {x: 1, y: 1, z: 1}
-    sphere2.scale.x += randomScaleValue
-    sphere2.scale.y += randomScaleValue
-    sphere2.scale.z += randomScaleValue
+    
+    sphere2.scale.x += 1
+    sphere2.scale.y += 1
+    sphere2.scale.z += 1
     }
     if (e.key === '3') {
     console.log("3 key pressed")
     document.querySelector('div.box.pad-3').style.opacity = 1
     document.getElementById('audio3').load()
     document.getElementById('audio3').play()
-    sphere3.scale = {x: 1, y: 1, z: 1}
-    sphere3.scale.x += randomScaleValue
-    sphere3.scale.y += randomScaleValue
-    sphere3.scale.z += randomScaleValue
+    
+    sphere3.scale.x += 1
+    sphere3.scale.y += 1
+    sphere3.scale.z += 1
     }
         if (e.key === '4') {
     console.log("4 key pressed")
     document.querySelector('div.box.pad-4').style.opacity = 1
     document.getElementById('audio4').load()
     document.getElementById('audio4').play()
-    sphere4.scale = {x: 1, y: 1, z: 1}
-    sphere4.scale.x += randomScaleValue
-    sphere4.scale.y += randomScaleValue
-    sphere4.scale.z += randomScaleValue
+    
+    sphere4.scale.x += 1
+    sphere4.scale.y += 1
+    sphere4.scale.z += 1
     }
         if (e.key === '5') {
     console.log("5 key pressed")
     document.querySelector('div.box.pad-5').style.opacity = 1
     document.getElementById('audio5').load()
     document.getElementById('audio5').play()
-    sphere5.scale = {x: 1, y: 1, z: 1}
-    sphere5.scale.x += randomScaleValue
-    sphere5.scale.y += randomScaleValue
-    sphere5.scale.z += randomScaleValue
+    
+    sphere5.scale.x += 1
+    sphere5.scale.y += 1
+    sphere5.scale.z += 1
     }
         if (e.key === '6') {
     console.log("6 key pressed")
     document.querySelector('div.box.pad-6').style.opacity = 1
     document.getElementById('audio6').load()
     document.getElementById('audio6').play()
-    sphere6.scale = {x: 1, y: 1, z: 1}
-    sphere6.scale.x += randomScaleValue
-    sphere6.scale.y += randomScaleValue
-    sphere6.scale.z += randomScaleValue
+    
+    sphere6.scale.x += 1
+    sphere6.scale.y += 1
+    sphere6.scale.z += 1
     }
         if (e.key === '7') {
     console.log("7 key pressed")
     document.querySelector('div.box.pad-7').style.opacity = 1
     document.getElementById('audio7').load()
     document.getElementById('audio7').play()
-    sphere7.scale = {x: 1, y: 1, z: 1}
-    sphere7.scale.x += randomScaleValue
-    sphere7.scale.y += randomScaleValue
-    sphere7.scale.z += randomScaleValue
+    
+    sphere7.scale.x += 1
+    sphere7.scale.y += 1
+    sphere7.scale.z += 1
     }
         if (e.key === '8') {
 
@@ -423,10 +406,10 @@ document.addEventListener('keypress', function (e) {
     document.querySelector('div.box.pad-8').style.opacity = 1
     document.getElementById('audio8').load()
     document.getElementById('audio8').play()
-    sphere8.scale = {x: 1, y: 1, z: 1}
-    sphere8.scale.x += randomScaleValue
-    sphere8.scale.y += randomScaleValue
-    sphere8.scale.z += randomScaleValue
+    
+    sphere8.scale.x += 1
+    sphere8.scale.y += 1
+    sphere8.scale.z += 1
     }
 
 });
@@ -434,36 +417,60 @@ document.addEventListener("keyup", function(e) {
       if (e.key === '1') {
     console.log("1 key release")
     document.querySelector('div.box.pad-1').style.opacity = ""
+    sphere1.scale.x -= 1
+    sphere1.scale.y -= 1
+    sphere1.scale.z -= 1
     
     }
     if (e.key === '2') {
     console.log("2 key released")
     document.querySelector('div.box.pad-2').style.opacity = ""
+    sphere2.scale.x -= 1
+    sphere2.scale.y -= 1
+    sphere2.scale.z -= 1
     }
     if (e.key === '3') {
     console.log("3 key released")
 document.querySelector('div.box.pad-3').style.opacity = ""
+    sphere3.scale.x -= 1
+    sphere3.scale.y -= 1
+    sphere3.scale.z -= 1
     }
         if (e.key === '4') {
     console.log("4 key released")
 document.querySelector('div.box.pad-4').style.opacity = ""
+    sphere4.scale.x -= 1
+    sphere4.scale.y -= 1
+    sphere4.scale.z -= 1
     }
         if (e.key === '5') {
     console.log("5 key released")
 document.querySelector('div.box.pad-5').style.opacity = ""
+    sphere5.scale.x -= 1
+    sphere5.scale.y -= 1
+    sphere5.scale.z -= 1
     }
         if (e.key === '6') {
     console.log("6 key released")
 document.querySelector('div.box.pad-6').style.opacity = ""
+    sphere6.scale.x -= 1
+    sphere6.scale.y -= 1
+    sphere6.scale.z -= 1
     }
         if (e.key === '7') {
     console.log("7 key released")
 document.querySelector('div.box.pad-7').style.opacity = ""
+    sphere7.scale.x -= 1
+    sphere7.scale.y -= 1
+    sphere7.scale.z -= 1
     }
         if (e.key === '8') {
 
     console.log("8 key released")
 document.querySelector('div.box.pad-8').style.opacity = ""
+    sphere8.scale.x -= 1
+    sphere8.scale.y -= 1
+    sphere8.scale.z -= 1
     }
 });
 
@@ -471,7 +478,7 @@ document.querySelector('div.box.pad-8').style.opacity = ""
 
 anime.timeline({loop: false})
   .add({
-    targets: '.ml15 .word',
+    targets: '.ml1 .word',
     scale: [14,1],
     opacity: [0,1],
     easing: "easeOutCirc",
@@ -481,7 +488,7 @@ anime.timeline({loop: false})
     }
    })
 //    .add({
-//     targets: '.ml15',
+//     targets: '.ml1',
 //     opacity: 0,
 //     duration: 1000,
 //     easing: "easeOutExpo",
