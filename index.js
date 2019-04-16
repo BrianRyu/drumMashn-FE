@@ -62,6 +62,11 @@ var t5 =0
 var t6 =0
 var t7 =0
 var t8 =0
+///////////////////////////
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+};
+//////////////////////////
 var animate = function () {
 
     requestAnimationFrame( animate );
@@ -107,33 +112,36 @@ var animate = function () {
     // sphere8.position.x = 20*Math.cos(t8) + 0;
     // sphere8.position.z = 20*Math.sin(t8) + 0; // These to strings make it work
     
-camera.position.z = 1000;
+camera.position.z = 10;
+
+        
+        // var randomPositionValue = getRandomArbitrary(-2, 2);
 
   //start shrinking spheres
-    sphere1.scale.x -= 0.001
-    sphere1.scale.y -= 0.001
-    sphere1.scale.z -= 0.001
-        sphere2.scale.x -= 0.001
-    sphere2.scale.y -= 0.001
-    sphere2.scale.z -= 0.001
-        sphere3.scale.x -= 0.001
-    sphere3.scale.y -= 0.001
-    sphere3.scale.z -= 0.001
-        sphere4.scale.x -= 0.001
-    sphere4.scale.y -= 0.001
-    sphere4.scale.z -= 0.001
-        sphere5.scale.x -= 0.001
-    sphere5.scale.y -= 0.001
-    sphere5.scale.z -= 0.001
-        sphere6.scale.x -= 0.001
-    sphere6.scale.y -= 0.001
-    sphere6.scale.z -= 0.001
-        sphere7.scale.x -= 0.001
-    sphere7.scale.y -= 0.001
-    sphere7.scale.z -= 0.001
-        sphere8.scale.x -= 0.001
-    sphere8.scale.y -= 0.0001
-    sphere8.scale.z -= 0.001
+    // sphere1.scale.x += 0.001
+    // sphere1.scale.y += 0.001
+    // sphere1.scale.z += 0.001
+    //     sphere2.scale.x -= 0.001
+    // sphere2.scale.y -= 0.001
+    // sphere2.scale.z -= 0.001
+    //     sphere3.scale.x -= 0.001
+    // sphere3.scale.y -= 0.001
+    // sphere3.scale.z -= 0.001
+    //     sphere4.scale.x -= 0.001
+    // sphere4.scale.y -= 0.001
+    // sphere4.scale.z -= 0.001
+    //     sphere5.scale.x -= 0.001
+    // sphere5.scale.y -= 0.001
+    // sphere5.scale.z -= 0.001
+    //     sphere6.scale.x -= 0.001
+    // sphere6.scale.y -= 0.001
+    // sphere6.scale.z -= 0.001
+    //     sphere7.scale.x -= 0.001
+    // sphere7.scale.y -= 0.001
+    // sphere7.scale.z -= 0.001
+    //     sphere8.scale.x -= 0.001
+    // sphere8.scale.y -= 0.0001
+    // sphere8.scale.z -= 0.001
    
     controls.update()
 
@@ -200,10 +208,10 @@ selectTag.addEventListener('change', (event) => {
       padClassTag.innerHTML = ''
       padArray.forEach((url) => {
       padClassTag.innerHTML += `<div class="box pad-${x}">${x}
-      <input type="button" value="PLAY"  onclick="play('audio${x}')">
+     
       <audio id="audio${x}" src="${url}" ></audio>
 
-      </button></div>`
+      </div>`
       x++ 
       
       })
@@ -221,6 +229,7 @@ selectTag.addEventListener('change', (event) => {
 //////////////
 /////END AUDIO
 /////////////////
+var randomScaleValue = getRandomArbitrary(-0.1, 0.1);
 animate()
 padClassTag.addEventListener('click', (event) => {
     // debugger
@@ -228,66 +237,66 @@ padClassTag.addEventListener('click', (event) => {
     case '1':
     console.log("pad 1 pressed")
     play(event.target.lastElementChild.id)
-    sphere1.scale = {x: 1, y: 1, z: 1}
-    sphere1.scale.x += 10
-    sphere1.scale.y += 10
-    sphere1.scale.z += 10
+   
+    sphere1.scale.x += randomScaleValue
+    sphere1.scale.y += randomScaleValue
+    sphere1.scale.z += randomScaleValue
     break;
     case '2':
     console.log("pad 2 pressed")
     play(event.target.lastElementChild.id)
-    sphere2.scale = {x: 1, y: 1, z: 1}
-    sphere2.scale.x += 13
-    sphere2.scale.y += 13
-    sphere2.scale.z += 13
+   
+    sphere2.scale.x += randomScaleValue
+    sphere2.scale.y += randomScaleValue
+    sphere2.scale.z += randomScaleValue
     break;
     case '3':
     console.log("pad 3 pressed")
     play(event.target.lastElementChild.id)
-    sphere3.scale = {x: 1, y: 1, z: 1}
-    sphere3.scale.x += 14
-    sphere3.scale.y += 14
-    sphere3.scale.z += 14
+    
+    sphere3.scale.x += randomScaleValue
+    sphere3.scale.y += randomScaleValue
+    sphere3.scale.z += randomScaleValue
     break;
     case '4':
     console.log("pad 4 pressed")
     play(event.target.lastElementChild.id)
-    sphere4.scale = {x: 1, y: 1, z: 1}
-    sphere4.scale.x += 15
-    sphere4.scale.y += 15
-    sphere4.scale.z += 15
+   
+    sphere4.scale.x += randomScaleValue
+    sphere4.scale.y += randomScaleValue
+    sphere4.scale.z += randomScaleValue
     break;
     case '5':
     console.log("pad 5 pressed")
     play(event.target.lastElementChild.id)
-    sphere5.scale = {x: 1, y: 1, z: 1}
-    sphere5.scale.x += 16
-    sphere5.scale.y += 16
-    sphere5.scale.z += 16
+  
+    sphere5.scale.x += randomScaleValue
+    sphere5.scale.y += randomScaleValue
+    sphere5.scale.z += randomScaleValue
     break;
     case '6':
     console.log("pad 6 pressed")
     play(event.target.lastElementChild.id)
-    sphere6.scale = {x: 1, y: 1, z: 1}
-    sphere6.scale.x += 17
-    sphere6.scale.y += 17
-    sphere6.scale.z += 17
+
+    sphere6.scale.x += randomScaleValue
+    sphere6.scale.y += randomScaleValue
+    sphere6.scale.z += randomScaleValue
     break;
     case '7':
     console.log("pad 7 pressed")
     play(event.target.lastElementChild.id)
-    sphere7.scale = {x: 1, y: 1, z: 1}
-    sphere7.scale.x += 18
-    sphere7.scale.y += 18
-    sphere7.scale.z += 18
+ 
+    sphere7.scale.x += randomScaleValue
+    sphere7.scale.y += randomScaleValue
+    sphere7.scale.z += randomScaleValue
     break;
     case '8':
     console.log("pad 8 pressed")
     play(event.target.lastElementChild.id)
-    sphere8.scale = {x: 1, y: 1, z: 1}
-    sphere8.scale.x += 19
-    sphere8.scale.y += 19
-    sphere8.scale.z += 19
+
+    sphere8.scale.x += randomScaleValue
+    sphere8.scale.y += randomScaleValue
+    sphere8.scale.z += randomScaleValue
     break;
    }
 })
@@ -298,77 +307,78 @@ padClassTag.addEventListener('click', (event) => {
 
 
 document.addEventListener('keypress', function (e) {
+	debugger
     if (e.key === '1') {
     console.log("1 key pressed")
     document.getElementById('audio1').load()
     document.getElementById('audio1').play()
     sphere1.scale = {x: 1, y: 1, z: 1}
-    sphere1.scale.x += 10
-    sphere1.scale.y += 10
-    sphere1.scale.z += 10
+    sphere1.scale.x += randomScaleValue
+    sphere1.scale.y += randomScaleValue
+    sphere1.scale.z += randomScaleValue
     }
     if (e.key === '2') {
     console.log("2 key pressed")
     document.getElementById('audio2').load()
     document.getElementById('audio2').play()
     sphere2.scale = {x: 1, y: 1, z: 1}
-    sphere2.scale.x += 10
-    sphere2.scale.y += 10
-    sphere2.scale.z += 10
+    sphere2.scale.x += randomScaleValue
+    sphere2.scale.y += randomScaleValue
+    sphere2.scale.z += randomScaleValue
     }
     if (e.key === '3') {
     console.log("3 key pressed")
     document.getElementById('audio3').load()
     document.getElementById('audio3').play()
     sphere3.scale = {x: 1, y: 1, z: 1}
-    sphere3.scale.x += 10
-    sphere3.scale.y += 10
-    sphere3.scale.z += 10
+    sphere3.scale.x += randomScaleValue
+    sphere3.scale.y += randomScaleValue
+    sphere3.scale.z += randomScaleValue
     }
         if (e.key === '4') {
     console.log("4 key pressed")
     document.getElementById('audio4').load()
     document.getElementById('audio4').play()
     sphere4.scale = {x: 1, y: 1, z: 1}
-    sphere4.scale.x += 10
-    sphere4.scale.y += 10
-    sphere4.scale.z += 10
+    sphere4.scale.x += randomScaleValue
+    sphere4.scale.y += randomScaleValue
+    sphere4.scale.z += randomScaleValue
     }
         if (e.key === '5') {
     console.log("5 key pressed")
     document.getElementById('audio5').load()
     document.getElementById('audio5').play()
     sphere5.scale = {x: 1, y: 1, z: 1}
-    sphere5.scale.x += 10
-    sphere5.scale.y += 10
-    sphere5.scale.z += 10
+    sphere5.scale.x += randomScaleValue
+    sphere5.scale.y += randomScaleValue
+    sphere5.scale.z += randomScaleValue
     }
         if (e.key === '6') {
     console.log("6 key pressed")
-     document.getElementById('audio6').load()
+    document.getElementById('audio6').load()
     document.getElementById('audio6').play()
     sphere6.scale = {x: 1, y: 1, z: 1}
-    sphere6.scale.x += 10
-    sphere6.scale.y += 10
-    sphere6.scale.z += 10
+    sphere6.scale.x += randomScaleValue
+    sphere6.scale.y += randomScaleValue
+    sphere6.scale.z += randomScaleValue
     }
         if (e.key === '7') {
     console.log("7 key pressed")
     document.getElementById('audio7').load()
     document.getElementById('audio7').play()
     sphere7.scale = {x: 1, y: 1, z: 1}
-    sphere7.scale.x += 10
-    sphere7.scale.y += 10
-    sphere7.scale.z += 10
+    sphere7.scale.x += randomScaleValue
+    sphere7.scale.y += randomScaleValue
+    sphere7.scale.z += randomScaleValue
     }
         if (e.key === '8') {
     console.log("8 key pressed")
     document.getElementById('audio8').load()
     document.getElementById('audio8').play()
     sphere8.scale = {x: 1, y: 1, z: 1}
-    sphere8.scale.x += 10
-    sphere8.scale.y += 10
-    sphere8.scale.z += 10
+    sphere8.scale.x += randomScaleValue
+    sphere8.scale.y += randomScaleValue
+    sphere8.scale.z += randomScaleValue
     }
 });
 
