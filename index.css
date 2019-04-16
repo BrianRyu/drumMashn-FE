@@ -19,7 +19,8 @@
 /* End of Opening Text */
 
 
-body { margin: 0; padding: 0; overflow: hidden; }
+body { margin: 0; padding: 0; overflow: hidden;
+cursor: url(https://static.wixstatic.com/media/6641d6_1d283d1d9756465aa47e4cb5b6539fca~mv2.png), auto; }
 canvas { width: 100%; height: 100% }
 .my-skin {
 top: 200px;
@@ -82,6 +83,7 @@ top:0;
 }
 
 .dropdown-content {
+cursor: url(https://static.wixstatic.com/media/6641d6_76fc582962c34411bf160cfbd71efc2c~mv2.png);
   display: none;
   position: absolute;
   background-color;

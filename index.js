@@ -158,8 +158,10 @@ partGeom.addAttribute( 'size', new THREE.Float32BufferAttribute( sizes, 4 ).setD
 particleSystem = new THREE.Points( partGeom, shaderMaterial );
 scene.add( particleSystem );
 //////////////////////
-camera.position.z = 500;
 
+camera.position.z = -70;
+camera.position.y = 0;
+camera.position.x = 0;
 
 
 let controls = new THREE.OrbitControls(camera, renderer.domElement)
@@ -184,7 +186,10 @@ var animate = function () {
 
     requestAnimationFrame( animate );
 
-
+while (camera.position.x >= 900 ){
+    camera.position.x = -100
+}
+camera.position.x += 1
 
     /////////////////
     t1 += 0.0052;  
@@ -228,7 +233,7 @@ var animate = function () {
     sphere8.position.x = 10*Math.cos(t8) + 0;
     sphere8.position.z = 10*Math.sin(t8) + 0; // These to strings make it work
     
-camera.position.z = 10;
+
 
         
 
