@@ -307,9 +307,9 @@ padClassTag.addEventListener('click', (event) => {
 
 
 document.addEventListener('keypress', function (e) {
-	debugger
     if (e.key === '1') {
     console.log("1 key pressed")
+    document.querySelector('div.box.pad-1').style.opacity = 1
     document.getElementById('audio1').load()
     document.getElementById('audio1').play()
     sphere1.scale = {x: 1, y: 1, z: 1}
@@ -372,6 +372,7 @@ document.addEventListener('keypress', function (e) {
     sphere7.scale.z += randomScaleValue
     }
         if (e.key === '8') {
+
     console.log("8 key pressed")
     document.getElementById('audio8').load()
     document.getElementById('audio8').play()
@@ -380,5 +381,6 @@ document.addEventListener('keypress', function (e) {
     sphere8.scale.y += randomScaleValue
     sphere8.scale.z += randomScaleValue
     }
+    
 });
 
