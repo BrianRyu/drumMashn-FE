@@ -1,3 +1,39 @@
+// OPENING TEXT ANIMATION JS ******************************************************************************
+
+anime.timeline({loop: false})
+  .add({
+    targets: '.ml15 .word',
+    scale: [14,1],
+    opacity: [0,1],
+    easing: "easeOutCirc",
+    duration: 800
+  });
+
+//   END OF OPENING TEXT ANIMATION // ***********************************************************************
+
+
+
+// DROP DOWN OFF OF OPENING TEXT 
+
+const dropDownDiv = document.querySelector('div.dropdown-content');
+const addDropDownSelect = (kit) => {
+      return `<p value=${x}> ${kit.name} </p>`
+}
+
+fetch(`http://localhost:3000/api/v1/drumkit`)
+.then((resp) => {
+      return resp.json()
+}).then((resp) => {
+     resp.forEach((kit) => {
+           let x = 0;
+           dropDownDiv.innerHTML += addDropDownSelect(kit);
+           x++;
+     })
+})
+
+
+// END OF DROP DOWN LOGIC //
+
 
 const container3d = document.querySelector('#container')
 //SCene
@@ -181,9 +217,6 @@ camera.position.z = 10;
 // // dropdown should change id's of each pad
 // const dropDownSelect = document.querySelector('select.dropdown-content')
 
-// const addDropDownSelect = (genre) => {
-//       return `<option value=${genre.id}> ${genre.name} </option>`
-// }
 // fetch(padUrl)
 
 // .then((resp) => {
@@ -500,3 +533,7 @@ document.querySelector('div.box.pad-8').style.opacity = ""
     sphere8.scale.z -= 1
     }
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 12cb319083048e6e71f15ae3abf5d3243e92d5ea
