@@ -269,13 +269,40 @@ camera.position.z = 10;
 ////////////////////////////////
 //////NEW DB CODE BEGINS
 ///////////////////////////////
+const padClassTag = document.querySelector('.pad')
+function fetchByDrop(dropdown) {
 let drumkitURL = "http://localhost:3000/api/v1/drumkits"
 fetch(drumkitURL)
 .then( resp =>  resp.json() )
 .then( kits => {
     debugger
-})
+    let soundURLs = kits[dropdown].sounds
+   
+      let pad1 = soundURLs[0]
+      let pad2 = soundURLs[1]
+      let pad3 = soundURLs[2]
+      let pad4 = soundURLs[3]
+      let pad5 = soundURLs[4]
+      let pad6 = soundURLs[5]
+      let pad7 = soundURLs[6]
+      let pad8 = soundURLs[7]
+      let padArray = []
+      let x = 1
+      padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
+      padClassTag.innerHTML = ''
+      padArray.forEach((url) => {   
+      padClassTag.innerHTML += `<div class="box pad-${x}">${x}
+     
+      <audio id="audio${x}" src="${url.sound_url}" ></audio>
 
+      </div>`
+      x++ 
+})
+})
+};
+
+
+fetchByDrop()
 
  function play(value){
        var audio = document.getElementById(`${value}`);
@@ -506,4 +533,7 @@ document.querySelector('div.box.pad-8').style.opacity = ""
     sphere8.scale.z -= 1
     }
 });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 12cb319083048e6e71f15ae3abf5d3243e92d5ea
