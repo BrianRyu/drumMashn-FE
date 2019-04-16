@@ -8,12 +8,13 @@ anime.timeline({loop: false})
     easing: "easeOutCirc",
     duration: 800
   });
+/////////////////////////////////////////
+///   END OF OPENING TEXT ANIMATION  //// ***********************************************************************
+////////////////////////////////////////
 
-//   END OF OPENING TEXT ANIMATION // ***********************************************************************
-
-
-
-// DROP DOWN OFF OF OPENING TEXT 
+///////////////////////////////////
+// DROP DOWN OFF OF OPENING TEXT //
+///////////////////////////////////
 
 const dropDownDiv = document.querySelector('div.dropdown-content');
 
@@ -21,8 +22,9 @@ fetch(`http://localhost:3000/api/v1/drumkits`)
 .then((resp) => {
       return resp.json()
 }).then((resp) => {
-    let x = 0;
      resp.forEach((kit) => {
+      
+           let x = 0;
            dropDownDiv.innerHTML += `<p data-id=${x}> ${kit.name} </p>`
            x++;
      })
@@ -30,48 +32,20 @@ fetch(`http://localhost:3000/api/v1/drumkits`)
 
 const dropDownTag = document.querySelector('.dropdown-content')
 dropDownTag.addEventListener('click', (event) => {
-  
-    fetchByDrop(event.target.dataset.id)
+    let kitid = event.target.dataset.id
+    fetchByDrop(kitid)
 })
-////////////////////////////////
-//////NEW DB CODE BEGINS
-///////////////////////////////
-const padClassTag = document.querySelector('.pad')
-function fetchByDrop(dropdown) {
 
-let drumkitURL = "http://localhost:3000/api/v1/drumkits"
-fetch(drumkitURL)
-.then( resp =>  resp.json() )
-.then( kits => {
-    let soundURLs = kits[dropdown].sounds
-   
-      let pad1 = soundURLs[0]
-      let pad2 = soundURLs[1]
-      let pad3 = soundURLs[2]
-      let pad4 = soundURLs[3]
-      let pad5 = soundURLs[4]
-      let pad6 = soundURLs[5]
-      let pad7 = soundURLs[6]
-      let pad8 = soundURLs[7]
-      let padArray = []
-      let x = 1
-      padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
-      padClassTag.innerHTML = ''
-      padArray.forEach((url) => {   
-      padClassTag.innerHTML += `<div class="box pad-${x}">${x}
-     
-      <audio id="audio${x}" src="${url.sound_url}" ></audio>
-
-      </div>`
-      x++ 
-})
-})
-};
-
+////////////////////////////
 // END OF DROP DOWN LOGIC //
+////////////////////////////
 
 
+
+///////////////////////////////////////////////
 // STARTING LOGIC BEHIND MODAL FOR ADD SOUND //
+///////////////////////////////////////////////
+
 // Get the modal
 const modal = document.getElementById('addSoundModal');
 
@@ -98,9 +72,10 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-
+//////////////////////////////////////////////
 // ENDING LOGIC BEHIND MODAL FOR ADD SOUND ///
+//////////////////////////////////////////////
+
 
 
 const container3d = document.querySelector('#container')
@@ -272,68 +247,39 @@ camera.position.z = 10;
 ///AUDIO 
 //////////
 
-
-//drop down box with select genre
-//value of the return will be the value being passed in for skin = skin.find( id => id.id === *1*);
-/////////////////////////////////////////////
-/////OLD DB CODE -- BEGINS
-///////////////////////////
-// const padClassTag = document.querySelector('.pad')
-// const padUrl = 'http://localhost:3000/api/v1/sounds'
-
-
-// // dropdown should change id's of each pad
-// const dropDownSelect = document.querySelector('select.dropdown-content')
-
-// fetch(padUrl)
-
-// .then((resp) => {
-//       return resp.json()
-// }).then((resp) => {
-//      resp.forEach((sound) => {
-//            dropDownSelect.innerHTML += addDropDownSelect(sound);
-//      })
-// })
-
-// // drop down logic complete
-
-
-// // pad appear on skin logic 
-// const selectTag = document.querySelector('select')
-// selectTag.addEventListener('change', (event) => {
-
-//       let newId = parseInt(event.target.value)
-//       fetch(padUrl)
-//       .then( res => res.json() )
-//       .then( sounds => {
-            
-//       sound = sounds.find(sound => sound.id === newId);
-//       pad1 = sound['pad_1']
-//       pad2 = sound['pad_2']
-//       pad3 = sound['pad_3']
-//       pad4 = sound['pad_4']
-//       pad5 = sound['pad_5']
-//       pad6 = sound['pad_6']
-//       pad7 = sound['pad_7']
-//       pad8 = sound['pad_8']
-//       let padArray = []
-//       let x = 1
-//       padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
-//       padClassTag.innerHTML = ''
-//       padArray.forEach((url) => {
-//       padClassTag.innerHTML += `<div class="box pad-${x}">${x}
+////////////////////////////////
+//////NEW DB CODE BEGINS
+///////////////////////////////
+const padClassTag = document.querySelector('.pad')
+function fetchByDrop(dropdown) {
+let drumkitURL = "http://localhost:3000/api/v1/drumkits"
+fetch(drumkitURL)
+.then( resp =>  resp.json() )
+.then( kits => {
+    let soundURLs = kits[1].sounds
+   
+      let pad1 = soundURLs[0]
+      let pad2 = soundURLs[1]
+      let pad3 = soundURLs[2]
+      let pad4 = soundURLs[3]
+      let pad5 = soundURLs[4]
+      let pad6 = soundURLs[5]
+      let pad7 = soundURLs[6]
+      let pad8 = soundURLs[7]
+      let padArray = []
+      let x = 1
+      padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
+      padClassTag.innerHTML = ''
+      padArray.forEach((url) => {   
+      padClassTag.innerHTML += `<div class="box pad-${x}">${x}
      
-//       <audio id="audio${x}" src="${url}" ></audio>
+      <audio id="audio${x}" src="${url.sound_url}" ></audio>
 
-//       </div>`
-//       x++ 
-      
-//       })
-// })
-// })
-
-/////////////////////////////////
-/////OLD DB CODE ENDS
+      </div>`
+      x++ 
+})
+})
+};
 
 
 // fetchByDrop()
@@ -567,4 +513,5 @@ document.querySelector('div.box.pad-8').style.opacity = ""
     sphere8.scale.z -= 1
     }
 });
+
 
