@@ -21,6 +21,7 @@ function randomIntFromInterval(min,max) // min and max included
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 ///Start building geomatry///////
+
 let geometry = new THREE.SphereGeometry(randomIntFromInterval(4,10),randomIntFromInterval(5,10),randomIntFromInterval(4,40))
 let material = new THREE.MeshNormalMaterial({wireframe: true})
 
@@ -118,38 +119,38 @@ var animate = function () {
     t2 += -0.0052
     sphere2.rotation.x += 0.0001
     sphere2.rotation.z += 0.002
-    // sphere2.position.x = 40*Math.cos(t2) + 0;
-    // sphere2.position.z = 40*Math.sin(t2) + 0; // These to strings make it work
+    sphere2.position.x = 40*Math.cos(t2) + 0;
+    sphere2.position.z = 40*Math.sin(t2) + 0; // These to strings make it work
     t3 += 0.0059
     sphere3.rotation.x += 0.0002
     sphere3.rotation.z += 0.002
-    // sphere3.position.x = 10*Math.cos(t3) + 0;
-    // sphere3.position.z = 12*Math.sin(t3) + 0; // These to strings make it work
+    sphere3.position.x = 10*Math.cos(t3) + 0;
+    sphere3.position.z = 12*Math.sin(t3) + 0; // These to strings make it work
     t4 += 0.0053
     sphere4.rotation.x += 0.0001
     sphere4.rotation.z += 0.002
-    // sphere4.position.x = 20*Math.cos(t4) + 0;
-    // sphere4.position.z = 20*Math.sin(t4) + 0; // These to strings make it work
+    sphere4.position.x = 60*Math.cos(t4) + 0;
+    sphere4.position.z = 20*Math.sin(t4) + 0; // These to strings make it work
     t5 += -0.0057
     sphere5.rotation.x += 0.0002
     sphere5.rotation.z += 0.002
-    // sphere5.position.x = 20*Math.cos(t5) + 0;
-    // sphere5.position.z = 20*Math.sin(t5) + 0; // These to strings make it work
+    sphere5.position.x = 35*Math.cos(t5) + 0;
+    sphere5.position.z = 20*Math.sin(t5) + 0; // These to strings make it work
     t6 += -0.0055
     sphere6.rotation.x += 0.0001
     sphere6.rotation.z += 0.002
-    // sphere6.position.x = 20*Math.cos(t6) + 0;
-    // sphere6.position.z = 20*Math.sin(t6) + 0; // These to strings make it work
+    sphere6.position.x = 50*Math.cos(t6) + 0;
+    sphere6.position.z = 60*Math.sin(t6) + 0; // These to strings make it work
     t7 += -0.0054
     sphere7.rotation.x += 0.0002
     sphere7.rotation.z += 0.002
-    // sphere7.position.x = 20*Math.cos(t7) + 0;
-    // sphere7.position.z = 20*Math.sin(t7) + 0; // These to strings make it work
-    t8 += -0.058
+    sphere7.position.x = 60*Math.cos(t7) + 0;
+    sphere7.position.z = 80*Math.sin(t7) + 0; // These to strings make it work
+    t8 += -0.0058
     sphere8.rotation.x += 0.0001
     sphere8.rotation.z += 0.002
-    // sphere8.position.x = 20*Math.cos(t8) + 0;
-    // sphere8.position.z = 20*Math.sin(t8) + 0; // These to strings make it work
+    sphere8.position.x = 10*Math.cos(t8) + 0;
+    sphere8.position.z = 10*Math.sin(t8) + 0; // These to strings make it work
     
 camera.position.z = 10;
 
@@ -358,6 +359,7 @@ document.addEventListener('keypress', function (e) {
     }
     if (e.key === '2') {
     console.log("2 key pressed")
+    document.querySelector('div.box.pad-2').style.opacity = 1
     document.getElementById('audio2').load()
     document.getElementById('audio2').play()
     sphere2.scale = {x: 1, y: 1, z: 1}
@@ -367,6 +369,7 @@ document.addEventListener('keypress', function (e) {
     }
     if (e.key === '3') {
     console.log("3 key pressed")
+    document.querySelector('div.box.pad-3').style.opacity = 1
     document.getElementById('audio3').load()
     document.getElementById('audio3').play()
     sphere3.scale = {x: 1, y: 1, z: 1}
@@ -376,6 +379,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '4') {
     console.log("4 key pressed")
+    document.querySelector('div.box.pad-4').style.opacity = 1
     document.getElementById('audio4').load()
     document.getElementById('audio4').play()
     sphere4.scale = {x: 1, y: 1, z: 1}
@@ -385,6 +389,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '5') {
     console.log("5 key pressed")
+    document.querySelector('div.box.pad-5').style.opacity = 1
     document.getElementById('audio5').load()
     document.getElementById('audio5').play()
     sphere5.scale = {x: 1, y: 1, z: 1}
@@ -394,6 +399,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '6') {
     console.log("6 key pressed")
+    document.querySelector('div.box.pad-6').style.opacity = 1
     document.getElementById('audio6').load()
     document.getElementById('audio6').play()
     sphere6.scale = {x: 1, y: 1, z: 1}
@@ -403,6 +409,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '7') {
     console.log("7 key pressed")
+    document.querySelector('div.box.pad-7').style.opacity = 1
     document.getElementById('audio7').load()
     document.getElementById('audio7').play()
     sphere7.scale = {x: 1, y: 1, z: 1}
@@ -413,6 +420,7 @@ document.addEventListener('keypress', function (e) {
         if (e.key === '8') {
 
     console.log("8 key pressed")
+    document.querySelector('div.box.pad-8').style.opacity = 1
     document.getElementById('audio8').load()
     document.getElementById('audio8').play()
     sphere8.scale = {x: 1, y: 1, z: 1}
@@ -421,5 +429,41 @@ document.addEventListener('keypress', function (e) {
     sphere8.scale.z += randomScaleValue
     }
 
+});
+document.addEventListener("keyup", function(e) {
+      if (e.key === '1') {
+    console.log("1 key release")
+    document.querySelector('div.box.pad-1').style.opacity = ""
+    
+    }
+    if (e.key === '2') {
+    console.log("2 key released")
+    document.querySelector('div.box.pad-2').style.opacity = ""
+    }
+    if (e.key === '3') {
+    console.log("3 key released")
+document.querySelector('div.box.pad-3').style.opacity = ""
+    }
+        if (e.key === '4') {
+    console.log("4 key released")
+document.querySelector('div.box.pad-4').style.opacity = ""
+    }
+        if (e.key === '5') {
+    console.log("5 key released")
+document.querySelector('div.box.pad-5').style.opacity = ""
+    }
+        if (e.key === '6') {
+    console.log("6 key released")
+document.querySelector('div.box.pad-6').style.opacity = ""
+    }
+        if (e.key === '7') {
+    console.log("7 key released")
+document.querySelector('div.box.pad-7').style.opacity = ""
+    }
+        if (e.key === '8') {
+
+    console.log("8 key released")
+document.querySelector('div.box.pad-8').style.opacity = ""
+    }
 });
 
