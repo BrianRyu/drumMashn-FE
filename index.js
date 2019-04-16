@@ -186,10 +186,10 @@ var animate = function () {
 
     requestAnimationFrame( animate );
 
-while (camera.position.x >= 900 ){
+while (camera.position.x >= 400 ){
     camera.position.x = -100
 }
-camera.position.x += 1
+camera.position.x += 0.1
 
     /////////////////
     t1 += 0.0052;  
