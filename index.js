@@ -16,22 +16,24 @@ anime.timeline({loop: false})
 // DROP DOWN OFF OF OPENING TEXT 
 
 const dropDownDiv = document.querySelector('div.dropdown-content');
-const addDropDownSelect = (kit) => {
-      return `<p value=${x}> ${kit.name} </p>`
-}
 
-fetch(`http://localhost:3000/api/v1/drumkit`)
+fetch(`http://localhost:3000/api/v1/drumkits`)
 .then((resp) => {
       return resp.json()
 }).then((resp) => {
      resp.forEach((kit) => {
+      
            let x = 0;
-           dropDownDiv.innerHTML += addDropDownSelect(kit);
+           dropDownDiv.innerHTML += `<p data-id=${x}> ${kit.name} </p>`
            x++;
      })
 })
 
-
+const dropDownTag = document.querySelector('.dropdown-content')
+dropDownTag.addEventListener('click', (event) => {
+    let kitid = event.target.dataset.id
+    fetchByDrop(kitid)
+})
 // END OF DROP DOWN LOGIC //
 
 
@@ -275,8 +277,7 @@ let drumkitURL = "http://localhost:3000/api/v1/drumkits"
 fetch(drumkitURL)
 .then( resp =>  resp.json() )
 .then( kits => {
-    debugger
-    let soundURLs = kits[dropdown].sounds
+    let soundURLs = kits[1].sounds
    
       let pad1 = soundURLs[0]
       let pad2 = soundURLs[1]
@@ -302,7 +303,7 @@ fetch(drumkitURL)
 };
 
 
-fetchByDrop()
+// fetchByDrop()
 
  function play(value){
        var audio = document.getElementById(`${value}`);
@@ -533,7 +534,4 @@ document.querySelector('div.box.pad-8').style.opacity = ""
     sphere8.scale.z -= 1
     }
 });
-<<<<<<< HEAD
-=======
 
->>>>>>> 12cb319083048e6e71f15ae3abf5d3243e92d5ea
