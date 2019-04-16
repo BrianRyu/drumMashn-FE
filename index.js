@@ -1,3 +1,17 @@
+// OPENING TEXT ANIMATION JS ******************************************************************************
+
+anime.timeline({loop: false})
+  .add({
+    targets: '.ml15 .word',
+    scale: [14,1],
+    opacity: [0,1],
+    easing: "easeOutCirc",
+    duration: 800
+  });
+
+//   END OF OPENING TEXT ANIMATION // ***********************************************************************
+
+
 
 const container3d = document.querySelector('#container')
 //SCene
@@ -474,25 +488,3 @@ document.querySelector('div.box.pad-8').style.opacity = ""
     }
 });
 
-// OPENING TEXT ANIMATION JS ******************************************************************************
-
-anime.timeline({loop: false})
-  .add({
-    targets: '.ml1 .word',
-    scale: [14,1],
-    opacity: [0,1],
-    easing: "easeOutCirc",
-//     duration: 800,
-    delay: function(el, i) {
-      return 800 * i;
-    }
-   })
-//    .add({
-//     targets: '.ml1',
-//     opacity: 0,
-//     duration: 1000,
-//     easing: "easeOutExpo",
-//     delay: 1000
-//   });
-
-//   END OF OPENING TEXT ANIMATION // ***********************************************************************
