@@ -8,12 +8,13 @@ anime.timeline({loop: false})
     easing: "easeOutCirc",
     duration: 800
   });
+/////////////////////////////////////////
+///   END OF OPENING TEXT ANIMATION  //// ***********************************************************************
+////////////////////////////////////////
 
-//   END OF OPENING TEXT ANIMATION // ***********************************************************************
-
-
-
-// DROP DOWN OFF OF OPENING TEXT 
+///////////////////////////////////
+// DROP DOWN OFF OF OPENING TEXT //
+///////////////////////////////////
 
 const dropDownDiv = document.querySelector('div.dropdown-content');
 
@@ -34,10 +35,17 @@ dropDownTag.addEventListener('click', (event) => {
     let kitid = event.target.dataset.id
     fetchByDrop(kitid)
 })
+
+////////////////////////////
 // END OF DROP DOWN LOGIC //
+////////////////////////////
 
 
+
+///////////////////////////////////////////////
 // STARTING LOGIC BEHIND MODAL FOR ADD SOUND //
+///////////////////////////////////////////////
+
 // Get the modal
 const modal = document.getElementById('addSoundModal');
 
@@ -64,9 +72,10 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-
+//////////////////////////////////////////////
 // ENDING LOGIC BEHIND MODAL FOR ADD SOUND ///
+//////////////////////////////////////////////
+
 
 
 const container3d = document.querySelector('#container')
@@ -238,68 +247,6 @@ camera.position.z = 10;
 ///AUDIO 
 //////////
 
-
-//drop down box with select genre
-//value of the return will be the value being passed in for skin = skin.find( id => id.id === *1*);
-/////////////////////////////////////////////
-/////OLD DB CODE -- BEGINS
-///////////////////////////
-// const padClassTag = document.querySelector('.pad')
-// const padUrl = 'http://localhost:3000/api/v1/sounds'
-
-
-// // dropdown should change id's of each pad
-// const dropDownSelect = document.querySelector('select.dropdown-content')
-
-// fetch(padUrl)
-
-// .then((resp) => {
-//       return resp.json()
-// }).then((resp) => {
-//      resp.forEach((sound) => {
-//            dropDownSelect.innerHTML += addDropDownSelect(sound);
-//      })
-// })
-
-// // drop down logic complete
-
-
-// // pad appear on skin logic 
-// const selectTag = document.querySelector('select')
-// selectTag.addEventListener('change', (event) => {
-
-//       let newId = parseInt(event.target.value)
-//       fetch(padUrl)
-//       .then( res => res.json() )
-//       .then( sounds => {
-            
-//       sound = sounds.find(sound => sound.id === newId);
-//       pad1 = sound['pad_1']
-//       pad2 = sound['pad_2']
-//       pad3 = sound['pad_3']
-//       pad4 = sound['pad_4']
-//       pad5 = sound['pad_5']
-//       pad6 = sound['pad_6']
-//       pad7 = sound['pad_7']
-//       pad8 = sound['pad_8']
-//       let padArray = []
-//       let x = 1
-//       padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
-//       padClassTag.innerHTML = ''
-//       padArray.forEach((url) => {
-//       padClassTag.innerHTML += `<div class="box pad-${x}">${x}
-     
-//       <audio id="audio${x}" src="${url}" ></audio>
-
-//       </div>`
-//       x++ 
-      
-//       })
-// })
-// })
-
-/////////////////////////////////
-/////OLD DB CODE ENDS
 ////////////////////////////////
 //////NEW DB CODE BEGINS
 ///////////////////////////////
