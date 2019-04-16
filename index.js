@@ -16,12 +16,16 @@ function onWindowResize() {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
-
+function randomIntFromInterval(min,max) // min and max included
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
 ///Start building geomatry///////
-let geometry = new THREE.SphereGeometry(10,10,10)
+
+let geometry = new THREE.SphereGeometry(randomIntFromInterval(4,10),randomIntFromInterval(5,10),randomIntFromInterval(4,40))
 let material = new THREE.MeshNormalMaterial({wireframe: true})
 
-//Create 8 spheres for each pad
+///////Create 8 spheres for each pad
 let sphere1 = new THREE.Mesh(geometry, material)
 scene.add(sphere1)
 
@@ -42,8 +46,39 @@ scene.add(sphere7)
 let sphere8 = new THREE.Mesh(geometry, material)
 scene.add(sphere8)
 
+//Create some particles
+//////////////////////
+var tex = new THREE.TextureLoader().load("https://threejs.org/examples/textures/sprites/disc.png");
+  // load the texture
+var partGeom
+var particleSystem
+var particles = 100000;
+var radius = 500;
+var positions = [];
+var colors = [];
+var sizes = [];
+partGeom = new THREE.BufferGeometry();
+var color = new THREE.Color();
+var shaderMaterial = new THREE.PointsMaterial( { 
+    color: 0x888888,
+    map: tex  } );
 
+for ( var i = 0; i < particles; i ++ ) {
+            positions.push( ( Math.random() * 2 - 1 ) * radius );
+            positions.push( ( Math.random() * 2 - 1 ) * radius );
+            positions.push( ( Math.random() * 2 - 1 ) * radius );
+            color.setHSL( i / particles, 1.0, 0.5 );
+            colors.push( color.r, color.g, color.b );
+            sizes.push( 200 );
+        }
 
+partGeom.addAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+partGeom.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
+partGeom.addAttribute( 'size', new THREE.Float32BufferAttribute( sizes, 4 ).setDynamic( true ) );
+
+particleSystem = new THREE.Points( partGeom, shaderMaterial );
+scene.add( particleSystem );
+//////////////////////
 camera.position.z = 500;
 
 
@@ -69,48 +104,53 @@ function getRandomArbitrary(min, max) {
 //////////////////////////
 var animate = function () {
 
+
+
     requestAnimationFrame( animate );
 
+
+
+    /////////////////
     t1 += 0.0052;  
-    sphere1.rotation.x += 0.01
-    sphere1.rotation.z += 0.02
+    sphere1.rotation.x += 0.0001
+    sphere1.rotation.z += 0.002
     sphere1.position.x = 20*Math.cos(t1) + 0;
     sphere1.position.z = 20*Math.sin(t1) + 0; // These to strings make it work
     t2 += -0.0052
-    sphere2.rotation.x += 0.001
-    sphere2.rotation.z += 0.02
-    // sphere2.position.x = 40*Math.cos(t2) + 0;
-    // sphere2.position.z = 40*Math.sin(t2) + 0; // These to strings make it work
+    sphere2.rotation.x += 0.0001
+    sphere2.rotation.z += 0.002
+    sphere2.position.x = 40*Math.cos(t2) + 0;
+    sphere2.position.z = 40*Math.sin(t2) + 0; // These to strings make it work
     t3 += 0.0059
-    sphere3.rotation.x += 0.002
-    sphere3.rotation.z += 0.02
-    // sphere3.position.x = 10*Math.cos(t3) + 0;
-    // sphere3.position.z = 12*Math.sin(t3) + 0; // These to strings make it work
+    sphere3.rotation.x += 0.0002
+    sphere3.rotation.z += 0.002
+    sphere3.position.x = 10*Math.cos(t3) + 0;
+    sphere3.position.z = 12*Math.sin(t3) + 0; // These to strings make it work
     t4 += 0.0053
-    sphere4.rotation.x += 0.001
-    sphere4.rotation.z += 0.02
-    // sphere4.position.x = 20*Math.cos(t4) + 0;
-    // sphere4.position.z = 20*Math.sin(t4) + 0; // These to strings make it work
+    sphere4.rotation.x += 0.0001
+    sphere4.rotation.z += 0.002
+    sphere4.position.x = 60*Math.cos(t4) + 0;
+    sphere4.position.z = 20*Math.sin(t4) + 0; // These to strings make it work
     t5 += -0.0057
-    sphere5.rotation.x += 0.002
-    sphere5.rotation.z += 0.02
-    // sphere5.position.x = 20*Math.cos(t5) + 0;
-    // sphere5.position.z = 20*Math.sin(t5) + 0; // These to strings make it work
+    sphere5.rotation.x += 0.0002
+    sphere5.rotation.z += 0.002
+    sphere5.position.x = 35*Math.cos(t5) + 0;
+    sphere5.position.z = 20*Math.sin(t5) + 0; // These to strings make it work
     t6 += -0.0055
-    sphere6.rotation.x += 0.001
-    sphere6.rotation.z += 0.02
-    // sphere6.position.x = 20*Math.cos(t6) + 0;
-    // sphere6.position.z = 20*Math.sin(t6) + 0; // These to strings make it work
+    sphere6.rotation.x += 0.0001
+    sphere6.rotation.z += 0.002
+    sphere6.position.x = 50*Math.cos(t6) + 0;
+    sphere6.position.z = 60*Math.sin(t6) + 0; // These to strings make it work
     t7 += -0.0054
-    sphere7.rotation.x += 0.002
-    sphere7.rotation.z += 0.02
-    // sphere7.position.x = 20*Math.cos(t7) + 0;
-    // sphere7.position.z = 20*Math.sin(t7) + 0; // These to strings make it work
-    t8 += -0.058
-    sphere8.rotation.x += 0.001
-    sphere8.rotation.z += 0.02
-    // sphere8.position.x = 20*Math.cos(t8) + 0;
-    // sphere8.position.z = 20*Math.sin(t8) + 0; // These to strings make it work
+    sphere7.rotation.x += 0.0002
+    sphere7.rotation.z += 0.002
+    sphere7.position.x = 60*Math.cos(t7) + 0;
+    sphere7.position.z = 80*Math.sin(t7) + 0; // These to strings make it work
+    t8 += -0.0058
+    sphere8.rotation.x += 0.0001
+    sphere8.rotation.z += 0.002
+    sphere8.position.x = 10*Math.cos(t8) + 0;
+    sphere8.position.z = 10*Math.sin(t8) + 0; // These to strings make it work
     
 camera.position.z = 10;
 
@@ -307,9 +347,9 @@ padClassTag.addEventListener('click', (event) => {
 
 
 document.addEventListener('keypress', function (e) {
-	debugger
     if (e.key === '1') {
     console.log("1 key pressed")
+    document.querySelector('div.box.pad-1').style.opacity = 1
     document.getElementById('audio1').load()
     document.getElementById('audio1').play()
     sphere1.scale = {x: 1, y: 1, z: 1}
@@ -319,6 +359,7 @@ document.addEventListener('keypress', function (e) {
     }
     if (e.key === '2') {
     console.log("2 key pressed")
+    document.querySelector('div.box.pad-2').style.opacity = 1
     document.getElementById('audio2').load()
     document.getElementById('audio2').play()
     sphere2.scale = {x: 1, y: 1, z: 1}
@@ -328,6 +369,7 @@ document.addEventListener('keypress', function (e) {
     }
     if (e.key === '3') {
     console.log("3 key pressed")
+    document.querySelector('div.box.pad-3').style.opacity = 1
     document.getElementById('audio3').load()
     document.getElementById('audio3').play()
     sphere3.scale = {x: 1, y: 1, z: 1}
@@ -337,6 +379,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '4') {
     console.log("4 key pressed")
+    document.querySelector('div.box.pad-4').style.opacity = 1
     document.getElementById('audio4').load()
     document.getElementById('audio4').play()
     sphere4.scale = {x: 1, y: 1, z: 1}
@@ -346,6 +389,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '5') {
     console.log("5 key pressed")
+    document.querySelector('div.box.pad-5').style.opacity = 1
     document.getElementById('audio5').load()
     document.getElementById('audio5').play()
     sphere5.scale = {x: 1, y: 1, z: 1}
@@ -355,6 +399,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '6') {
     console.log("6 key pressed")
+    document.querySelector('div.box.pad-6').style.opacity = 1
     document.getElementById('audio6').load()
     document.getElementById('audio6').play()
     sphere6.scale = {x: 1, y: 1, z: 1}
@@ -364,6 +409,7 @@ document.addEventListener('keypress', function (e) {
     }
         if (e.key === '7') {
     console.log("7 key pressed")
+    document.querySelector('div.box.pad-7').style.opacity = 1
     document.getElementById('audio7').load()
     document.getElementById('audio7').play()
     sphere7.scale = {x: 1, y: 1, z: 1}
@@ -372,13 +418,52 @@ document.addEventListener('keypress', function (e) {
     sphere7.scale.z += randomScaleValue
     }
         if (e.key === '8') {
+
     console.log("8 key pressed")
+    document.querySelector('div.box.pad-8').style.opacity = 1
     document.getElementById('audio8').load()
     document.getElementById('audio8').play()
     sphere8.scale = {x: 1, y: 1, z: 1}
     sphere8.scale.x += randomScaleValue
     sphere8.scale.y += randomScaleValue
     sphere8.scale.z += randomScaleValue
+    }
+
+});
+document.addEventListener("keyup", function(e) {
+      if (e.key === '1') {
+    console.log("1 key release")
+    document.querySelector('div.box.pad-1').style.opacity = ""
+    
+    }
+    if (e.key === '2') {
+    console.log("2 key released")
+    document.querySelector('div.box.pad-2').style.opacity = ""
+    }
+    if (e.key === '3') {
+    console.log("3 key released")
+document.querySelector('div.box.pad-3').style.opacity = ""
+    }
+        if (e.key === '4') {
+    console.log("4 key released")
+document.querySelector('div.box.pad-4').style.opacity = ""
+    }
+        if (e.key === '5') {
+    console.log("5 key released")
+document.querySelector('div.box.pad-5').style.opacity = ""
+    }
+        if (e.key === '6') {
+    console.log("6 key released")
+document.querySelector('div.box.pad-6').style.opacity = ""
+    }
+        if (e.key === '7') {
+    console.log("7 key released")
+document.querySelector('div.box.pad-7').style.opacity = ""
+    }
+        if (e.key === '8') {
+
+    console.log("8 key released")
+document.querySelector('div.box.pad-8').style.opacity = ""
     }
 });
 
