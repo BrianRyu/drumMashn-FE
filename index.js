@@ -83,13 +83,8 @@ fetch(drumkitURL)
 ///////////////////////////////////////////////
 
 // Get the modal
-<<<<<<< HEAD
 const soundModal = document.getElementById('soundModal');
 const kitModal = document.getElementById('kitModal');
-=======
-const modal = document.getElementById('addSoundModal');
->>>>>>> ccae22747f0cb221c3dc8e9cd6253e589dc10a9f
-
 // Get the button that opens the modal
 const soundBtn = document.getElementById("addSoundBtn");
 const kitBtn = document.getElementById("createKitBtn");
@@ -144,9 +139,8 @@ const addNewSound = (soundUrl) => {
             'Content-Type': 'application/json',
             Accept: 'application/json'
         },
-        body: JSON.stringify(soundUrl)
+        body: JSON.stringify({'sound_url': soundUrl})
     }).then((res) => {
-        debugger
         return res.json();
     })
 }
@@ -154,7 +148,6 @@ const addNewSound = (soundUrl) => {
 modalDiv.addEventListener('click', (event) => {
     if(event.target.tagName === 'BUTTON') {
         let soundUrl = event.target.parentElement.querySelector('input').value;
-        debugger
         addNewSound(soundUrl);
     }
 })
