@@ -22,9 +22,10 @@ fetch(`http://localhost:3000/api/v1/drumkits`)
 .then((resp) => {
       return resp.json()
 }).then((resp) => {
+    let x = 0;
      resp.forEach((kit) => {
       
-           let x = 0;
+           
            dropDownDiv.innerHTML += `<p data-id=${x}> ${kit.name} </p>`
            x++;
      })
@@ -39,7 +40,42 @@ dropDownTag.addEventListener('click', (event) => {
 ////////////////////////////
 // END OF DROP DOWN LOGIC //
 ////////////////////////////
+////////////////////////////////
+//////NEW DB CODE BEGINS
+///////////////////////////////
+const padClassTag = document.querySelector('.pad')
+function fetchByDrop(dropdown) {
+let drumkitURL = "http://localhost:3000/api/v1/drumkits"
+fetch(drumkitURL)
+.then( resp =>  resp.json() )
+.then( kits => {
+    let soundURLs = kits[dropdown].sounds
+   
+      let pad1 = soundURLs[0]
+      let pad2 = soundURLs[1]
+      let pad3 = soundURLs[2]
+      let pad4 = soundURLs[3]
+      let pad5 = soundURLs[4]
+      let pad6 = soundURLs[5]
+      let pad7 = soundURLs[6]
+      let pad8 = soundURLs[7]
+      let padArray = []
+      let x = 1
+      padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
+      padClassTag.innerHTML = ''
+      padArray.forEach((url) => {   
+      padClassTag.innerHTML += `<div class="box pad-${x}">${x}
+     
+      <audio id="audio${x}" src="${url.sound_url}" ></audio>
 
+      </div>`
+      x++ 
+})
+})
+};
+
+
+// fetchByDrop()
 
 
 ///////////////////////////////////////////////
@@ -47,7 +83,7 @@ dropDownTag.addEventListener('click', (event) => {
 ///////////////////////////////////////////////
 
 // Get the modal
-const modal = document.getElementById('soundModal');
+const modal = document.getElementById('addSoundModal');
 
 // Get the button that opens the modal
 const btn = document.getElementsByClassName("modalButton");
@@ -107,13 +143,7 @@ modalDiv.addEventListener('click', (event) => {
 // ************************************************************************ //
 
 // CREATE A NEW KIT //
-
-
-
-
 // END OF CREATE A NEW KIT //
-
-
 
 const container3d = document.querySelector('#container')
 //SCene
@@ -141,7 +171,7 @@ function randomIntFromInterval(min,max) // min and max included
 let geometry = new THREE.SphereGeometry(randomIntFromInterval(4,10),randomIntFromInterval(5,10),randomIntFromInterval(4,40))
 let material = new THREE.MeshNormalMaterial({wireframe: true})
 
-///////Create 8 spheres for each pad
+///// 8 spheres for each pad
 let sphere1 = new THREE.Mesh(geometry, material)
 scene.add(sphere1)
 
@@ -164,7 +194,7 @@ scene.add(sphere8)
 
 //Create some particles
 //////////////////////
-var tex = new THREE.TextureLoader().load("https://threejs.org/examples/textures/sprites/disc.png");
+var tex = new THREE.TextureLoader().load("https://static.wixstatic.com/media/6641d6_b083a3071334433f809d9daf8bba0fcb~mv2.png");
   // load the texture
 var partGeom
 var particleSystem
@@ -176,7 +206,10 @@ var sizes = [];
 partGeom = new THREE.BufferGeometry();
 var color = new THREE.Color();
 var shaderMaterial = new THREE.PointsMaterial( { 
-    color: 0x888888,
+    size: 3,
+    sizeAttenuation: false,
+    alphaTest: 0.5, 
+    transparent: true,
     map: tex  } );
 
 for ( var i = 0; i < particles; i ++ ) {
@@ -223,10 +256,10 @@ var animate = function () {
 
     requestAnimationFrame( animate );
 
-while (camera.position.x >= 900 ){
+while (camera.position.x >= 400 ){
     camera.position.x = -100
 }
-camera.position.x += 1
+camera.position.x += 0.1
 
     /////////////////
     t1 += 0.0052;  
@@ -289,42 +322,7 @@ camera.position.x += 1
 ///AUDIO 
 //////////
 
-////////////////////////////////
-//////NEW DB CODE BEGINS
-///////////////////////////////
-const padClassTag = document.querySelector('.pad')
-function fetchByDrop(dropdown) {
-let drumkitURL = "http://localhost:3000/api/v1/drumkits"
-fetch(drumkitURL)
-.then( resp =>  resp.json() )
-.then( kits => {
-    let soundURLs = kits[1].sounds
-   
-      let pad1 = soundURLs[0]
-      let pad2 = soundURLs[1]
-      let pad3 = soundURLs[2]
-      let pad4 = soundURLs[3]
-      let pad5 = soundURLs[4]
-      let pad6 = soundURLs[5]
-      let pad7 = soundURLs[6]
-      let pad8 = soundURLs[7]
-      let padArray = []
-      let x = 1
-      padArray.push(pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8)
-      padClassTag.innerHTML = ''
-      padArray.forEach((url) => {   
-      padClassTag.innerHTML += `<div class="box pad-${x}">${x}
-     
-      <audio id="audio${x}" src="${url.sound_url}" ></audio>
 
-      </div>`
-      x++ 
-})
-})
-};
-
-
-// fetchByDrop()
 
  function play(value){
        var audio = document.getElementById(`${value}`);
