@@ -83,12 +83,9 @@ fetch(drumkitURL)
 ///////////////////////////////////////////////
 
 // Get the modal
-<<<<<<< HEAD
+
 const soundModal = document.getElementById('soundModal');
 const kitModal = document.getElementById('kitModal');
-=======
-const modal = document.getElementById('addSoundModal');
->>>>>>> ccae22747f0cb221c3dc8e9cd6253e589dc10a9f
 
 // Get the button that opens the modal
 const soundBtn = document.getElementById("addSoundBtn");
@@ -138,15 +135,16 @@ window.onclick = function(event) {
 const modalDiv = document.getElementById('sound-modal-content')
 
 const addNewSound = (soundUrl) => {
+    
     return fetch('http://localhost:3000/api/v1/sounds', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json'
         },
-        body: JSON.stringify(soundUrl)
+        body: JSON.stringify( { "sound_url": soundUrl } ) 
     }).then((res) => {
-        debugger
+        
         return res.json();
     })
 }
@@ -158,14 +156,31 @@ modalDiv.addEventListener('click', (event) => {
         addNewSound(soundUrl);
     }
 })
+//////ADD NEW KIT FUNCTION
+const addNewKit = (kitName) => {
+   return fetch("http://localhost:3000/api/v1/drumkits", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        body: JSON.stringify( { "name": kitName } ) 
+       })
+    .then((res) => {
+        
+        return res.json();
+    })
+}
 
-// END OF CREATE SOUND //
 
 // ************************************************************************ //
 
-// CREATE A NEW KIT //
-// END OF CREATE A NEW KIT //
 
+
+
+///////////////////////
+////BEGIN 3D scene creation
+///////////////////////
 const container3d = document.querySelector('#container')
 //SCene
 var scene = new THREE.Scene();
