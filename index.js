@@ -172,7 +172,18 @@ const addNewKit = (kitName) => {
     })
 }
 
-
+/////List Sounds function
+const listSounds = () => {
+    return fetch('http://localhost:3000/api/v1/sounds')
+    .then( ( response ) => { 
+        return response.json() } )
+    .then((res) => {
+        debugger
+        res.forEach((sound) => { 
+////SOME LOGIC HERE TO WRITE INDEX PAGE
+            console.log(sound.sound_url) } )
+    })
+}
 // ************************************************************************ //
 
 
