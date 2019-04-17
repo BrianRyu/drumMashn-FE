@@ -20,25 +20,43 @@
 
 /* ADD SOUND MODAL BEGINS HERE */
 
-#addSound {
-  background-color: #391c14;
-  border: none;
-  color: white;
-  position: absolute;
-  padding: 16px 32px;
-  bottom:0;
-  right:0;
-  text-align: right;
-  font-size: 16px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
+#addSoundBtn {
+    background-color: #391c14;
+    border: none;
+    color: white;
+    position: absolute;
+    padding: 16px 32px;
+    bottom:0;
+    right:0;
+    text-align: right;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-#addSound:hover {opacity: 1}
+#createKitBtn {
+    background-color: #391c14;
+    border: none;
+    color: white;
+    position: absolute;
+    padding: 16px 32px;
+    bottom:60px;
+    right:0;
+    text-align: right;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modalButton:hover {opacity: 1}
 
 /* ADD SOUND MODAL ENDS HERE */
 
@@ -111,6 +129,8 @@
 }
 
 /* MODAL CSS ENDS HERE! */
+
+
 
 
 body { margin: 0; padding: 0; overflow: hidden;

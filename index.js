@@ -50,7 +50,7 @@ dropDownTag.addEventListener('click', (event) => {
 const modal = document.getElementById('soundModal');
 
 // Get the button that opens the modal
-const btn = document.getElementById("addSound");
+const btn = document.getElementsByClassName("modalButton");
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
@@ -75,6 +75,43 @@ window.onclick = function(event) {
 //////////////////////////////////////////////
 // ENDING LOGIC BEHIND MODAL FOR ADD SOUND ///
 //////////////////////////////////////////////
+
+
+// CREATE SOUND FROM 'ADD SOUND' BUTTON //
+const modalDiv = document.getElementById('sound-modal-content')
+
+const addNewSound = (soundUrl) => {
+    return fetch('http://localhost:3000/api/v1/sounds', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        body: JSON.stringify(soundUrl)
+    }).then((res) => {
+        debugger
+        return res.json();
+    })
+}
+
+modalDiv.addEventListener('click', (event) => {
+    if(event.target.tagName === 'BUTTON') {
+        let soundUrl = event.target.parentElement.querySelector('input').value;
+        debugger
+        addNewSound(soundUrl);
+    }
+})
+
+// END OF CREATE SOUND //
+
+// ************************************************************************ //
+
+// CREATE A NEW KIT //
+
+
+
+
+// END OF CREATE A NEW KIT //
 
 
 
@@ -518,5 +555,3 @@ document.querySelector('div.box.pad-8').style.opacity = ""
     sphere8.scale.z -= 1
     }
 });
-
-
