@@ -142,9 +142,9 @@ const addNewSound = (soundUrl) => {
             'Content-Type': 'application/json',
             Accept: 'application/json'
         },
-        body: JSON.stringify( { "sound_url": soundUrl } ) 
+
+        body: JSON.stringify({'sound_url': soundUrl})
     }).then((res) => {
-        
         return res.json();
     })
 }
@@ -152,7 +152,6 @@ const addNewSound = (soundUrl) => {
 modalDiv.addEventListener('click', (event) => {
     if(event.target.tagName === 'BUTTON') {
         let soundUrl = event.target.parentElement.querySelector('input').value;
-        debugger
         addNewSound(soundUrl);
     }
 })
