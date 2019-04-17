@@ -86,7 +86,7 @@ fetch(drumkitURL)
 const modal = document.getElementById('addSoundModal');
 
 // Get the button that opens the modal
-const btn = document.getElementById("addSound");
+const btn = document.getElementsByClassName("modalButton");
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
@@ -113,6 +113,37 @@ window.onclick = function(event) {
 //////////////////////////////////////////////
 
 
+// CREATE SOUND FROM 'ADD SOUND' BUTTON //
+const modalDiv = document.getElementById('sound-modal-content')
+
+const addNewSound = (soundUrl) => {
+    return fetch('http://localhost:3000/api/v1/sounds', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        body: JSON.stringify(soundUrl)
+    }).then((res) => {
+        debugger
+        return res.json();
+    })
+}
+
+modalDiv.addEventListener('click', (event) => {
+    if(event.target.tagName === 'BUTTON') {
+        let soundUrl = event.target.parentElement.querySelector('input').value;
+        debugger
+        addNewSound(soundUrl);
+    }
+})
+
+// END OF CREATE SOUND //
+
+// ************************************************************************ //
+
+// CREATE A NEW KIT //
+// END OF CREATE A NEW KIT //
 
 const container3d = document.querySelector('#container')
 //SCene
@@ -140,7 +171,7 @@ function randomIntFromInterval(min,max) // min and max included
 let geometry = new THREE.SphereGeometry(randomIntFromInterval(4,10),randomIntFromInterval(5,10),randomIntFromInterval(4,40))
 let material = new THREE.MeshNormalMaterial({wireframe: true})
 
-///////Create 8 spheres for each pad
+///// 8 spheres for each pad
 let sphere1 = new THREE.Mesh(geometry, material)
 scene.add(sphere1)
 
@@ -522,4 +553,3 @@ document.querySelector('div.box.pad-8').style.opacity = ""
     sphere8.scale.z -= 1
     }
 });
-
