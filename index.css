@@ -20,7 +20,7 @@
 
 /* ADD SOUND MODAL BEGINS HERE */
 
-#addSoundBtn {
+#addSoundBtn, #createKitBtn {
     background-color: #391c14;
     border: none;
     color: white;
@@ -39,21 +39,7 @@
 }
 
 #createKitBtn {
-    background-color: #391c14;
-    border: none;
-    color: white;
-    position: absolute;
-    padding: 16px 32px;
     bottom:60px;
-    right:0;
-    text-align: right;
-    font-size: 16px;
-    margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 .modalButton:hover {opacity: 1}
@@ -63,7 +49,7 @@
 /* MODAL CSS BEGINS HERE */
 
 /* The Modal (background) */
-#soundModal {
+#soundModal, #kitModal {
   display: none; /* Hidden by default */
   z-index: 100 !important; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -77,7 +63,7 @@
 }
 
 /* Modal Content */
-#sound-modal-content {
+#sound-modal-content, #kit-modal-content {
   color: floralwhite;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   opacity: 0.9;
