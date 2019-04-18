@@ -19,7 +19,7 @@ anime.timeline({loop: false})
 const dropDownDiv = document.querySelector('div.dropdown-content');
 
 const getDrumkitNames = () => {
-return fetch(`http://localhost:3000/api/v1/drumkits`)
+return fetch(`https://infinite-tundra-44498.herokuapp.com/api/v1/drumkits`)
 .then((resp) => {
       return resp.json()
 }).then((resp) => {
@@ -47,7 +47,7 @@ getDrumkitNames()
 ///////////////////////////////
 const padClassTag = document.querySelector('.pad')
 function fetchByDrop(dropdown) {
-let drumkitURL = "http://localhost:3000/api/v1/drumkits"
+let drumkitURL = "https://infinite-tundra-44498.herokuapp.com/api/v1/drumkits"
 fetch(drumkitURL)
 .then( resp =>  resp.json() )
 .then( kits => {
@@ -139,7 +139,7 @@ const modalDiv = document.getElementById('sound-modal-content')
 
 const addNewSound = (soundUrl) => {
     
-    return fetch('http://localhost:3000/api/v1/sounds', {
+    return fetch('https://infinite-tundra-44498.herokuapp.com/api/v1/sounds', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -160,7 +160,7 @@ modalDiv.addEventListener('click', (event) => {
 })
 //////ADD NEW KIT FUNCTION
 const addNewKit = (kitName) => {
-   return fetch("http://localhost:3000/api/v1/drumkits", {
+   return fetch("https://infinite-tundra-44498.herokuapp.com/api/v1/drumkits", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ const addNewKit = (kitName) => {
 let listOfSounds = document.querySelector(".listOfSounds")
 
 const listSounds = () => {
-    return fetch('http://localhost:3000/api/v1/sounds')
+    return fetch('https://infinite-tundra-44498.herokuapp.com/api/v1/sounds')
     .then( ( response ) => { 
         return response.json() } )
     .then((res) => {
@@ -250,7 +250,7 @@ var checkedTrue = []
             for (var i = 0; i < checkedTrue.length; i++)
         {
         let soundiD = checkedTrue[i].parentElement.firstElementChild.id
-        fetch('http://localhost:3000/api/v1/kit_sounds', { 
+        fetch('https://infinite-tundra-44498.herokuapp.com/api/v1/kit_sounds', { 
                     method:'POST',
                      headers: {
                       'Content-Type': 'application/json',
