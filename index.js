@@ -114,6 +114,7 @@ document.onclick = function(event) {
 
 
 kitBtn.onclick = function() {
+    listSounds()
     kitModal.style.display = "block";
 }
 
@@ -172,17 +173,106 @@ const addNewKit = (kitName) => {
 }
 
 /////List Sounds function
+let listOfSounds = document.querySelector(".listOfSounds")
+
 const listSounds = () => {
     return fetch('http://localhost:3000/api/v1/sounds')
     .then( ( response ) => { 
         return response.json() } )
     .then((res) => {
-        debugger
+       
+        let x = 1
+        listOfSounds.innerHTML = "<br><br><form>"
         res.forEach((sound) => { 
+          
 ////SOME LOGIC HERE TO WRITE INDEX PAGE
-            console.log(sound.sound_url) } )
+            let soundID = sound.id
+            listOfSounds.innerHTML += `<ul>
+            <li>
+            <audio src="${sound.sound_url}" id="${soundID}"></audio>
+            <button onclick="document.getElementById('${soundID}').play()">Preview</button>
+            Sound Number: ${x.toString()}
+
+            <input type="checkbox" name="soundSelection" value="${x.toString()}" onclick="return ValidateSoundSelection();">
+
+            </li><ul>`
+            console.log(sound.sound_url)
+            x++}
+            )
+           
+            
     })
 }
+////////////////////////////////
+/////Make sure no more than 8 buttons are clicked per drum kit
+//////////////////////////////
+function ValidateSoundSelection()  
+{  
+    var checkboxes = document.getElementsByName("soundSelection");  
+    var numberOfCheckedItems = 0;  
+    for(var i = 0; i < checkboxes.length; i++)  
+    {  
+        if(checkboxes[i].checked)  
+            numberOfCheckedItems++;  
+    }  
+    if(numberOfCheckedItems > 8)  
+    {  
+        alert("You can't select more than 8 sounds for your drumKit");  
+        return false;  
+    }  
+}  
+
+///////////////////create listener for drumkit creation
+let drumKitSubmit = document.querySelector('input.submit')
+
+drumKitSubmit.addEventListener('click', (event) => {
+var checkboxes = document.getElementsByName("soundSelection"); 
+var numberOfCheckedItems = 0; 
+var checkedTrue = []
+    for(var i = 0; i < checkboxes.length; i++)  
+     {  
+        if(checkboxes[i].checked)  
+          {
+            checkedTrue.push(checkboxes[i])
+            numberOfCheckedItems++;
+          }
+    }  
+   if (checkedTrue.length === 8) {
+    let kitName = document.querySelector('#KitName').value
+        addNewKit(kitName).then((event) => { 
+        ///////////////////////////
+        //ADDED ^ NEW KIT TO THE DB
+        ///////////////////////////
+        ///Then to build new kit using kitSound
+            let drumKitId = event.id 
+            for (var i = 0; i < checkedTrue.length; i++)
+        {
+        let soundiD = checkedTrue[i].parentElement.firstElementChild.id
+        fetch('http://localhost:3000/api/v1/kit_sounds', { 
+                    method:'POST',
+                     headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'  },
+            body: JSON.stringify( { drumkit_id: drumKitId, sound_id: soundiD } ) 
+ 
+                                  })
+                  
+        }
+
+        })
+      alert("New drum kit created");  
+//////////make the box close on this click
+                  location.reload();
+//////END OF checkedTrue length statement/////
+}
+else if (checkedTrue.length <= 8)
+{
+    alert("You must select 8 sounds for your drumKit");  
+        return false;  
+
+} 
+    })
+                                                    
 // ************************************************************************ //
 
 
