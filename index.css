@@ -4,8 +4,9 @@
   
   font-weight: 800;
   font-size: 4.0em;
+  left: 10px;
   color: floralwhite;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Impact, Charcoal, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   position: absolute; 
@@ -49,6 +50,8 @@
 /* MODAL CSS BEGINS HERE */
 
 /* The Modal (background) */
+
+
 #soundModal, #kitModal {
 
   display: none; /* Hidden by default */
@@ -141,7 +144,7 @@ top:0;
 
   
   top: 200px;
-  left:25%;
+  left:30%;
   position: absolute; 
   z-index:98;
   width: 500px;
