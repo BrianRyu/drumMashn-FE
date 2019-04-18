@@ -24,6 +24,7 @@ return fetch(`http://localhost:3000/api/v1/drumkits`)
       return resp.json()
 }).then((resp) => {
     let x = 0;
+    dropDownDiv.innerHTML = ""
      resp.forEach((kit) => {
       
            
@@ -263,17 +264,18 @@ var checkedTrue = []
         })
       alert("New drum kit created"); 
       kitModal.style.display = "none"; 
-      getDrumkitNames()
+      
 //////////make the box close on this click
                   
 //////END OF checkedTrue length statement/////
 }
 else if (checkedTrue.length <= 8)
 {
-    alert(`You have only selected ${checkedTrue} sounds for your drumKit\nPlease select 8`);  
+    alert(`You have only selected ${checkedTrue.length} sounds for your drumKit\nPlease select 8`);  
         return false;  
 
 } 
+getDrumkitNames()
     })
                                                     
 // ************************************************************************ //
