@@ -114,6 +114,7 @@ document.onclick = function(event) {
 
 
 kitBtn.onclick = function() {
+    listSounds()
     kitModal.style.display = "block";
 }
 
@@ -172,17 +173,52 @@ const addNewKit = (kitName) => {
 }
 
 /////List Sounds function
+let listOfSounds = document.querySelector(".listOfSounds")
+
 const listSounds = () => {
     return fetch('http://localhost:3000/api/v1/sounds')
     .then( ( response ) => { 
         return response.json() } )
     .then((res) => {
-        debugger
+       
+        let x = 1
+        listOfSounds.innerHTML = "<br><br><form>"
         res.forEach((sound) => { 
+          
 ////SOME LOGIC HERE TO WRITE INDEX PAGE
-            console.log(sound.sound_url) } )
+            let soundID = sound.id
+            listOfSounds.innerHTML += `<ul>
+            <li>
+            <audio src="${sound.sound_url}" id="${soundID}"></audio>
+            <button onclick="document.getElementById('${soundID}').play()">Preview</button>
+            Sound Number: ${x.toString()}
+
+            <input type="checkbox" name="soundSelection" value="${x.toString()}" onclick="return ValidateSoundSelection();">
+
+            </li><ul>`
+            console.log(sound.sound_url)
+            x++}
+            )
+           
+            
     })
 }
+
+function ValidateSoundSelection()  
+{  
+    var checkboxes = document.getElementsByName("soundSelection");  
+    var numberOfCheckedItems = 0;  
+    for(var i = 0; i < checkboxes.length; i++)  
+    {  
+        if(checkboxes[i].checked)  
+            numberOfCheckedItems++;  
+    }  
+    if(numberOfCheckedItems > 8)  
+    {  
+        alert("You can't select more than 8 sounds for your drumKit");  
+        return false;  
+    }  
+}  
 // ************************************************************************ //
 
 
