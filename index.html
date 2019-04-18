@@ -54,13 +54,14 @@
         <div class="modal-header">
           <span id='kitSpan' class="close">&times;</span>
         </div>
-        <form>
+        <form class="add-drumkit-form" onsubmit="return false">
         <div class='listOfSounds'>
           <!-- list of all sounds here -->
         </div>
         Kit Name:
-        <input type="text" name="KitName">
-        <input type="submit" value="Submit now"> 
+        <input type="text" id="KitName">
+        <input type="submit" value="Submit now" class="submit"> 
+
         </form>
         
       </div>
