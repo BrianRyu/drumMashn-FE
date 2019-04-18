@@ -18,7 +18,8 @@ anime.timeline({loop: false})
 
 const dropDownDiv = document.querySelector('div.dropdown-content');
 
-fetch(`http://localhost:3000/api/v1/drumkits`)
+const getDrumkitNames = () => {
+return fetch(`http://localhost:3000/api/v1/drumkits`)
 .then((resp) => {
       return resp.json()
 }).then((resp) => {
@@ -30,13 +31,13 @@ fetch(`http://localhost:3000/api/v1/drumkits`)
            x++;
      })
 })
-
+}
 const dropDownTag = document.querySelector('.dropdown-content')
 dropDownTag.addEventListener('click', (event) => {
     let kitid = event.target.dataset.id
     fetchByDrop(kitid)
 })
-
+getDrumkitNames()
 ////////////////////////////
 // END OF DROP DOWN LOGIC //
 ////////////////////////////
@@ -188,14 +189,14 @@ const listSounds = () => {
 ////SOME LOGIC HERE TO WRITE INDEX PAGE
             let soundID = sound.id
             listOfSounds.innerHTML += `<ul>
-            <li>
+           
             <audio src="${sound.sound_url}" id="${soundID}"></audio>
             <button onclick="document.getElementById('${soundID}').play()">Preview</button>
             Sound Number: ${x.toString()}
 
             <input type="checkbox" name="soundSelection" value="${x.toString()}" onclick="return ValidateSoundSelection();">
 
-            </li><ul>`
+           <ul>`
             console.log(sound.sound_url)
             x++}
             )
@@ -260,14 +261,16 @@ var checkedTrue = []
         }
 
         })
-      alert("New drum kit created");  
+      alert("New drum kit created"); 
+      kitModal.style.display = "none"; 
+      getDrumkitNames()
 //////////make the box close on this click
-                  location.reload();
+                  
 //////END OF checkedTrue length statement/////
 }
 else if (checkedTrue.length <= 8)
 {
-    alert("You must select 8 sounds for your drumKit");  
+    alert(`You have only selected ${checkedTrue} sounds for your drumKit\nPlease select 8`);  
         return false;  
 
 } 
