@@ -338,14 +338,14 @@ var tex = new THREE.TextureLoader().load("https://static.wixstatic.com/media/664
 var partGeom
 var particleSystem
 var particles = 100000;
-var radius = 500;
+var radius = 3000;
 var positions = [];
 var colors = [];
 var sizes = [];
 partGeom = new THREE.BufferGeometry();
 var color = new THREE.Color();
 var shaderMaterial = new THREE.PointsMaterial( { 
-    size: 3,
+    size: 10,
     sizeAttenuation: false,
     alphaTest: 0.5, 
     transparent: true,
