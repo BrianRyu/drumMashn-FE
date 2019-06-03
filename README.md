@@ -1,4 +1,4 @@
-# Drum Mas'n' Overview
+# Drum Mash'n' Overview
 Front end for Drum Machine project
 Drum machine that uses webGL, built for MOd 3 prject at Flatiron school.
 
