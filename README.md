@@ -15,3 +15,8 @@ By
 Brian Ryu
 &
 Will Simpson
+
+
+Application is deployed! Check out the link below:
+
+https://wsintra.github.io/drumMachineFrontEnd/
