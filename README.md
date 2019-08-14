@@ -1,12 +1,12 @@
 ![View of Drum Mash'n' Web-App](https://i.ibb.co/HpYwJp4/Screen-Shot-2019-08-13-at-8-42-03-PM.png)
 
 # Drum Mash'n' Overview
-Front end for Drum Machine project
-Drum machine that uses webGL, built for MOd 3 prject at Flatiron school.
+Front end for Drum Mach'n' project
+Drum Mash'n' that uses webGL, built for Module 3 project at Flatiron School.
 
 Run 'index.html' file in browser to view web-app.
 
-Drum machine connects to an API, built in rails and collects drum sounds and connects them into a drum kit.
+Drum Mash'n' connects to an API, built in Rails and collects drum sounds and connects them into a drum kit.
 In the background there is a space scene with 8 spheres to represent each drum pad, this uses the THREE.JS framework.
 
 ### Drum Mash'n'
