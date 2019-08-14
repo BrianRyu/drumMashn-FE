@@ -1,3 +1,5 @@
+![View of Drum Mash'n' Web-App](https://i.ibb.co/HpYwJp4/Screen-Shot-2019-08-13-at-8-42-03-PM.png)
+
 # Drum Mash'n' Overview
 Front end for Drum Machine project
 Drum machine that uses webGL, built for MOd 3 prject at Flatiron school.
